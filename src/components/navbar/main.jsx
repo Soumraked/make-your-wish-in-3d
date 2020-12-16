@@ -13,7 +13,7 @@ import Container from "@material-ui/core/Container";
 //Components
 import LinkButton from "./linkbutton";
 import Search from "./search";
-import Avatar from "./avatar";
+// import Avatar from "./avatar";
 import Drawer from "./drawer";
 // End import
 
@@ -60,10 +60,10 @@ function Navbar({ themeState, handleThemeChange }) {
             >
               {themeState ? <Moon /> : <Sun />}
             </IconButton>
-            <Avatar
+            {/* <Avatar
               src="https://firebasestorage.googleapis.com/v0/b/monosotakos.appspot.com/o/nekoAvatar.jpg?alt=media"
               alt="Kooga"
-            />
+            /> */}
           </Toolbar>
         </Container>
       </AppBar>
