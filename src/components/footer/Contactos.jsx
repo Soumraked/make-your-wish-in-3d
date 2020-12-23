@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
     },
     TextField:{
-        width: 380,
+        width: "30vw",
+     
     },
     boton:{
        height:30,
@@ -22,14 +23,10 @@ const useStyles = makeStyles((theme) => ({
        outline:"grey",  
        
     },
+
     separacion:{
-        padding:10,
+        width:"50%",
     },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-      },
     datosempresa:{
         display:"flex",
         alignItems:"flex-start",
@@ -58,17 +55,17 @@ function Formulario(props) {
              </Grid>
              <Grid item md={3} sm={3} style={{ textAlign: 'center',}} >
              
-                <a  href="https://facebook.com"><SiFacebook size={'3em'} /> </a>
+                <a  href="https://facebook.com"><SiFacebook size={'2em'} /> </a>
 
                 <h3>Facebook</h3>
              </Grid>
             <Grid item xs={3} sm={4} style={{ textAlign: 'center',}}>
-                <a href="https://www.instagram.com" > <SiInstagram  size={'3em'} /></a>
+                <a href="https://www.instagram.com" > <SiInstagram  size={'2em'} /></a>
                
                 <h3>Instagram</h3>
             </Grid>
             <Grid item xs={3} sm={3} style={{ textAlign: 'center',}}>
-                <a href="https://www.google.com" > <SiWhatsapp size={'3em'} /></a>
+                <a href="https://www.google.com" > <SiWhatsapp size={'2em'} /></a>
                
                 <h3>Whatsapp</h3>
             </Grid>
@@ -101,7 +98,7 @@ function Formulario(props) {
                 <TextField multiline htmlFor="texto"  rowsMax={3} size="medium"  label="Comentarios" variant="outlined"  className={classes.TextField}>Comentarios</TextField>
                 <Button variant="outlined" color="primary" className={classes.boton} onClick={handleClickForm} >
                 Enviar
-            </Button>
+               </Button>
             </FormControl>
 
            
