@@ -5,10 +5,14 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import withWidth from "@material-ui/core/withWidth";
+import Formulario from "./Contactos";
 
 function WithTheme(props) {
+ 
+
   return (
-    <div style={{ position: "relative", minHeight: "15vh" }}>
+    <footer className="footer" style={{ position: "fixed",  bottom: "0",
+    left: "0",  width: "100%" ,minHeight: "15vh",  padding: "0"}}>
       <Card
         style={{
           //absolute
@@ -17,21 +21,16 @@ function WithTheme(props) {
           bottom: 0,
           width: "100%",
           height: "auto",
+          padding: "0 0 0 0"
         }}
       >
-        <CardContent>
+        <CardContent  style={{padding:"0 0 1em 0" }}>
           <Container maxWidth="lg" disableGutters>
-            <Typography
-              style={{ textAlign: "center" }}
-              variant={props.width === "xs" ? "caption" : "subtitle1"}
-              component="div"
-            >
-              Make Your Wish in 3D - Todos los derechos reservados.
-            </Typography>
+            <Formulario/>
           </Container>
         </CardContent>
       </Card>
-    </div>
+    </footer>
   );
 }
 
