@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import withWidth from "@material-ui/core/withWidth";
-import Formulario from "./Contactos";
+import Formulario from "./contactos";
 
 function WithTheme(props) {
  
