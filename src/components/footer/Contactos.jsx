@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Container, FormControl, FormHelperText, FormLabel,InputLabel,Input, makeStyles, Button,Grid, Typography, TextField} from '@material-ui/core';
+import {Container, FormControl, FormHelperText,InputLabel,Input, makeStyles, Button,Grid, TextField} from '@material-ui/core';
+
 
 
 import { SiFacebook,SiInstagram,SiWhatsapp} from "react-icons/si";
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
     separacion:{
         width:"50%",
+     
     },
     datosempresa:{
         display:"flex",
@@ -76,9 +78,9 @@ function Formulario(props) {
 
 
     {/* {Formulario} */}
-        <Grid item  xs={12} sm={6} >
+        <Grid item  xs={12} sm={6}   >
     {/* {Nombre} */}
-            <FormControl className={classes.separacion}>
+            <FormControl className={classes.separacion} >
                 <InputLabel htmlFor="email">Email</InputLabel>
                 <Input id="email" type="email" aria-describedby="email-helper" />
                 <FormHelperText id="email-helper">Nunca compartiremos tu email.</FormHelperText>
@@ -87,7 +89,7 @@ function Formulario(props) {
   
    {/* {Email} */}
 
-            <FormControl className={classes.separacion}>
+            <FormControl className={classes.separacion}  style={{ padding:"0 0px 0px 10px", }}> 
                 <InputLabel LabelhtmlFor="Asunto">Asunto</InputLabel>
                 <Input id="Asunto" aria-describedby="my-helper-text" />
                 <FormHelperText id="my-helper-text">Nunca compartiremos tus datos.</FormHelperText>

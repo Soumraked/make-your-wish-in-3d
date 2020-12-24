@@ -28,6 +28,7 @@ function App() {
     palette: {
       type: palletType,
     },
+    
   });
   const handleThemeChange = () => {
     setThemeState(!themeState);
