@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import withWidth from "@material-ui/core/withWidth";
 import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from "@material-ui/core/styles";
-
+import "./paginacion.css"
 import Card from "./products";
 import Skeleton from "./skeleton";
 
@@ -103,9 +103,10 @@ function Products(props) {
           </Grid>
         )}
 
-        <div className={classes.root} style={{ textAlign: "center" }}>
+        <div className="paginacion" >
           <Pagination
-            style={{ display: "inline-block" }}
+
+            style={{ display: "inline-block" , align: "0" }}
             count={Math.ceil(products.length / max)}
             variant="outlined"
             color="secondary"

@@ -5,23 +5,14 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import withWidth from "@material-ui/core/withWidth";
 import Formulario from "./contactos";
+import "./contactos.css"
 
 function WithTheme(props) {
- 
-
   return (
-    <footer className="footer" style={{ position: "relative",  bottom: "0",
-    left: "0",  width: "100%" ,minHeight: "15vh",  padding: "0"}}>
+    <footer className="main-footer" >
+    <div className="container">
       <Card
-        style={{
-          //absolute
-          //fixed
-          position: "relative",
-          bottom: 0,
-          width: "100%",
-          height: "auto",
-          padding: "0 0 0 0"
-        }}
+     
       >
         <CardContent  style={{padding:"0 0 1em 0" }}>
           <Container maxWidth="lg" disableGutters>
@@ -29,6 +20,7 @@ function WithTheme(props) {
           </Container>
         </CardContent>
       </Card>
+     </div>
     </footer>
   );
 }
