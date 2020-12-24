@@ -10,13 +10,13 @@ function WithTheme(props) {
  
 
   return (
-    <footer className="footer" style={{ position: "fixed",  bottom: "0",
+    <footer className="footer" style={{ position: "relative",  bottom: "0",
     left: "0",  width: "100%" ,minHeight: "15vh",  padding: "0"}}>
       <Card
         style={{
           //absolute
           //fixed
-          position: "absolute",
+          position: "relative",
           bottom: 0,
           width: "100%",
           height: "auto",

@@ -1,10 +1,10 @@
 import React from "react";
-
+import ProductComponent from "../components/product/main"
 function Products() {
 
-  return <div>
-    <h1>Products</h1>
-  </div>;
+  return <>
+    <ProductComponent />
+  </>;
 }
 
 export default Products;
