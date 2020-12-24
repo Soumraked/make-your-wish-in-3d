@@ -4,7 +4,7 @@ import Details from "./views/details_product";
 import Products from "./views/products";
 import Admin from "./views/admin";
 import Error from "./views/error";
-
+import "./App.css";
 //Components
 import Navbar from "./components/navbar/main";
 import Footer from "./components/footer/main";
@@ -49,9 +49,11 @@ function App() {
     obtenerInfo();
   }, [prefersDarkMode, setThemeState]);
   return (
-    <>
+    <div className="page-container">
+      <div className="content-wrap" >
     <ThemeProvider theme={theme}>
         <CssBaseline />
+    
       <Router>
           <Navbar
             themeState={themeState}
@@ -66,10 +68,11 @@ function App() {
               <Route component={Error}></Route>
             </Switch>
           </Container>
-          <Footer />
         </Router>
         </ThemeProvider>
-    </>
+        </div>
+        <Footer />
+    </div>
   );
 }
 

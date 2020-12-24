@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 import AwesomeSlider from 'react-awesome-slider';
-i
+import AwesomeSliderStyles from 'react-awesome-slider/src/styles';
 
 const slider = (
   <AwesomeSlider cssModule={AwesomeSliderStyles}>
