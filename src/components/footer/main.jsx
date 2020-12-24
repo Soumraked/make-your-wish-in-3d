@@ -1,7 +1,6 @@
 import React from "react";
 
 import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import withWidth from "@material-ui/core/withWidth";
@@ -11,13 +10,13 @@ function WithTheme(props) {
  
 
   return (
-    <footer className="footer" style={{ position: "fixed",  bottom: "0",
+    <footer className="footer" style={{ position: "relative",  bottom: "0",
     left: "0",  width: "100%" ,minHeight: "15vh",  padding: "0"}}>
       <Card
         style={{
           //absolute
           //fixed
-          position: "absolute",
+          position: "relative",
           bottom: 0,
           width: "100%",
           height: "auto",
