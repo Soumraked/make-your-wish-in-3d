@@ -45,6 +45,10 @@ function handleClickForm(e) {
 
 function Formulario(props) {
     const classes = useStyles();
+    
+    const [email, setEmail] = React.useState("");
+    const [asunto, setAsunto] = React.useState("");
+    const [comentario, setComentario] = React.useState("");
 
     return <Container maxWidth="md" className={classes.datosempresa} >
     <Grid container direction="row" className={classes.datosempresa}  >
@@ -76,28 +80,48 @@ function Formulario(props) {
     </Grid>
 
 
-
     {/* {Formulario} */}
         <Grid item  xs={12} sm={6}   >
     {/* {Nombre} */}
             <FormControl className={classes.separacion} >
-                <InputLabel htmlFor="email">Email</InputLabel>
-                <Input id="email" type="email" aria-describedby="email-helper" />
+                <TextField
+                id="email-helper"
+                value={email}
+                onChange={(event) => {
+                    setEmail(event.target.value);
+                }}
+                label="Email"
+                />
                 <FormHelperText id="email-helper">Nunca compartiremos tu email.</FormHelperText>
             </FormControl>
-            
+
   
    {/* {Email} */}
 
             <FormControl className={classes.separacion}  style={{ padding:"0 0px 0px 10px", }}> 
-                <InputLabel LabelhtmlFor="Asunto">Asunto</InputLabel>
-                <Input id="Asunto" aria-describedby="my-helper-text" />
-                <FormHelperText id="my-helper-text">Nunca compartiremos tus datos.</FormHelperText>
+                <TextField
+                id="asunto"
+                value={asunto}
+                onChange={(event) => {
+                    setAsunto(event.target.value);
+                }}
+                label="Asunto"
+                />
+                <FormHelperText id="asunto">Nunca compartiremos tus datos.</FormHelperText>
             </FormControl>
     {/* {Numero} */}
 
             <FormControl>
-                <TextField multiline htmlFor="texto"  rowsMax={3} size="medium"  label="Comentarios" variant="outlined"  className={classes.TextField}>Comentarios</TextField>
+                <TextField multiline 
+                    rowsMax={3} 
+                    size="medium"  
+                    label="Comentarios" 
+                    variant="outlined"  
+                    className={classes.TextField} 
+                    value={comentario}
+                    onChange={(event) => {
+                        setComentario(event.target.value);
+                    }}/>
                 <Button variant="outlined" color="primary" className={classes.boton} onClick={handleClickForm} >
                 Enviar
                </Button>

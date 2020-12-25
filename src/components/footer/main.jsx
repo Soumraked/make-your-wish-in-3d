@@ -3,11 +3,10 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import withWidth from "@material-ui/core/withWidth";
-import Formulario from "./contactos";
+import Formulario from "./Contactos";
 import "./contactos.css"
 
-function WithTheme(props) {
+function Contacto(props) {
   return (
     <footer className="main-footer" >
     <div className="container">
@@ -25,4 +24,4 @@ function WithTheme(props) {
   );
 }
 
-export default withWidth()(WithTheme);
+export default Contacto;

@@ -1,10 +1,10 @@
 import React from "react";
+import Main from "../components/admin/main";
 
 function Admin() {
-
-  return <div>
-    <h1>Admin</h1>
-  </div>;
+  return <>
+    <Main />
+  </>;
 }
 
 export default Admin;
