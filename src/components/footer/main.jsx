@@ -11,9 +11,7 @@ function WithTheme(props) {
   return (
     <footer className="main-footer" >
     <div className="container">
-      <Card
-     
-      >
+      <Card>
         <CardContent  style={{padding:"0 0 1em 0" }}>
           <Container maxWidth="lg" disableGutters>
             <Formulario/>
