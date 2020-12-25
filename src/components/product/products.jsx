@@ -1,4 +1,4 @@
-  
+
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -6,8 +6,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import Chip from "@material-ui/core/Chip";
 
+import "./paginacion.css"
 import { Link } from "react-router-dom";
 
 const UseStyles = makeStyles((theme) => ({
@@ -56,26 +56,26 @@ function productCard(props) {
       className={classes.root}
       component={Link}
       to={`/productos/${props.id}`}
+      style={{borderRadius:"10%"}}
     >
-      <CardActionArea>
-        <CardMedia className={classes.media} image={props.img} title={title} />
-        <Chip
-          className={classes.type}
-          color="primary"
-          size="small"
-          label={props.value}
-        />
-        <Chip
-          className={classes.number}
-          color="secondary"
-          size="small"
-          label={props.value}
-        />
-        <CardContent className={classes.content}>
-          <Typography noWrap align="center">
-            <strong>{title}</strong>
-          </Typography>
-        </CardContent>
+      <CardActionArea style={{borderRadius:"10%"}}>
+
+        <div style={{ position: 'relative' }} >
+          <CardMedia className={classes.media} image={props.img} title={title} style={{borderRadius:"4%"}}  />
+
+          {/* Texto en color rojo */}
+
+          <div className="footer-product" >
+            <h4  className="text-product">
+              Valor ${props.value}
+            </h4>
+          </div>
+          <CardContent className={classes.content}>
+            <Typography noWrap align="center">
+              <strong>{title}</strong>
+            </Typography>
+          </CardContent>
+        </div>
       </CardActionArea>
     </Card>
   );
