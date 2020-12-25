@@ -1,8 +1,43 @@
-import { Card, CardActionArea, Container, Grid } from '@material-ui/core'
-import React from 'react'
+import { Button, Card, CardActionArea, Container, Grid } from '@material-ui/core'
+import React, { useState } from 'react'
 import "./detalle.css"
+import { CommentEmbed } from 'disqus-react';
+import { DiscussionEmbed } from 'disqus-react';
 
-export default function detalles({name,desc,img,model}) {
+
+
+export default function Detalles({name,desc,img,model}) {
+
+const id = name;
+const num =desc;
+const [disqus, setDisqus] = useState(false);
+const [disqusBtn, setDisqusBtn] = useState("block");
+
+React.useEffect(() => {
+    const obtenerInfo = () => {
+      setDisqus(false);
+      setDisqusBtn("block");
+    };
+    obtenerInfo();
+  }, [id, num, setDisqusBtn, setDisqus]);
+
+
+const disqusFunction = () => {
+    var d = document,
+      s = d.createElement("script");
+    s.src = 'https://makeyourwish3d.disqus.com/embed.js';
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  };
+
+  const seeComments = () => {
+    setDisqus(true);
+    setDisqusBtn("none");
+    disqusFunction();
+  };
+
+
+
     return (
         <div >
         <Container maxWidth="ld" style={{marginTop:"1em"}}  >
@@ -36,8 +71,11 @@ export default function detalles({name,desc,img,model}) {
                         </Card>
                    </Grid>
                   
-                   <Grid item xs={12} style={{background:"blue"}} >
-                        Discuss
+                   <Grid item xs={12}  >
+                   {disqus ? (
+            <div id="disqus_thread"></div>
+          ) : (seeComments()
+                )}
                     </Grid>
                        
                
