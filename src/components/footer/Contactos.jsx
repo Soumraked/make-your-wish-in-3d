@@ -136,6 +136,7 @@ function Formulario(props) {
     {/* {Numero} */}
 
             <FormControl>
+            <br></br>
                 <TextField multiline 
                     rowsMax={3} 
                     size="medium"  

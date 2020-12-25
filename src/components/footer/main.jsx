@@ -3,7 +3,7 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Formulario from "./Contactos";
+import Formulario from "./contactos";
 import "./contactos.css"
 
 function Contacto(props) {
