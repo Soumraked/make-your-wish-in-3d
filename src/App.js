@@ -69,9 +69,12 @@ function App() {
             </Switch>
           </Container>
         </Router>
+        
         </ThemeProvider>
         </div>
+        <ThemeProvider theme={theme}>
         <Footer />
+        </ThemeProvider>
     </div>
   );
 }
