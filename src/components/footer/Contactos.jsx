@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Container, FormControl, FormHelperText,InputLabel,Input, makeStyles, Button,Grid, TextField} from '@material-ui/core';
+import {Container, FormControl, FormHelperText,InputLabel,Input, makeStyles, Button,Grid, TextField, Typography} from '@material-ui/core';
 
 
 
@@ -46,14 +46,21 @@ function handleClickForm(e) {
 function Formulario(props) {
     const classes = useStyles();
 
-    return <Container maxWidth="md" className={classes.datosempresa} >
-    <Grid container direction="row" className={classes.datosempresa}  >
+    return <Container maxWidth="md" className="classes.datosempresa" >
+    <Grid container direction="row" className="classes.datosempresa"  >
 
     {/* {Datos de empresa} */}
-    <Grid item xs={12} sm={6} className={classes.datosempresa} >
+    <Grid item xs={12} sm={6} className={"classes.datosempresa"} >
          <Grid container spacing={2}>
              <Grid item xs={12} style={{ textAlign: 'center',}}>
-                {<h3>¡Siguenos en nuestras redes sociales! </h3>}
+                <Typography
+                style={{ textAlign: "center" }}
+                variant={props.width === "xs" ? "caption" : "subtitle1"}
+                component="div"
+                >
+               ¡Siguenos en nuestras redes sociales!
+            </Typography>
+
              </Grid>
              <Grid item md={3} sm={3} style={{ textAlign: 'center',}} >
              
@@ -71,8 +78,25 @@ function Formulario(props) {
                
                 <h3>Whatsapp</h3>
             </Grid>
+            
         </Grid>
+        <br></br>
 
+        <Typography
+              style={{ textAlign: "center" }}
+              variant={props.width === "xs" ? "caption" : "subtitle1"}
+              component="div"
+            >
+             Dirección:   0333# Avenida Springfield
+        </Typography>
+
+    <Typography
+              style={{ textAlign: "center" }}
+              variant={props.width === "xs" ? "caption" : "subtitle1"}
+              component="div"
+            >
+              Make Your Wish in 3D - Todos los derechos reservados.
+        </Typography>
     </Grid>
 
 
@@ -108,13 +132,7 @@ function Formulario(props) {
  
       
     </Grid>
- {/* {   <Typography
-              style={{ textAlign: "center" }}
-              variant={props.width === "xs" ? "caption" : "subtitle1"}
-              component="div"
-            >
-              Make Your Wish in 3D - Todos los derechos reservados.
-        </Typography>} */}
+ {/* {    */}
     </Container>
     
 }

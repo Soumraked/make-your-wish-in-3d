@@ -1,7 +1,11 @@
 .main-footer{
     padding-top:3em;
-   
     bottom: 0;
     position:relative;
     width: 100%;    
+}
+
+.MuiGrid-spacing-xs-2 {
+    justify-content: center;
+
 }
