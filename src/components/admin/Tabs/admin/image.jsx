@@ -66,6 +66,7 @@ export default function UploadImage({ image, addImage }) {
             >
               <CardMedia
                 className={classes.media}
+                id="imageProduct"
                 component="img"
                 src={image}
                 title={"image"}
