@@ -149,6 +149,7 @@ export default function Main({handleAccess, handleToken}) {
                     }}
                   >
                     <TextField
+                      type="email"
                       id="standard-required"
                       label="Identificador"
                       color="secondary"
