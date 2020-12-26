@@ -2,18 +2,51 @@ import React from "react";
 import withWidth from "@material-ui/core/withWidth";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import Information from "./admin/information";
 import Image from "./admin/image";
 
 import axios from "axios";
 
-function Upload() {
+function dataURItoBlob(dataURI) {
+  // convert base64 to raw binary data held in a string
+  // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+  var byteString = atob(dataURI.split(',')[1]);
+
+  // separate out the mime component
+  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+  // write the bytes of the string to an ArrayBuffer
+  var ab = new ArrayBuffer(byteString.length);
+  var ia = new Uint8Array(ab);
+  for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+  }
+
+  //Old Code
+  //write the ArrayBuffer to a blob, and you're done
+  //var bb = new BlobBuilder();
+  //bb.append(ab);
+  //return bb.getBlob(mimeString);
+
+  //New Code
+  return new Blob([ab], {type: mimeString});
+
+
+}
+
+function Upload({token}) {
   const [nameProduct, setNameProduct] = React.useState("");
   const [modelProduct, setModelProduct] = React.useState("");
   const [valueProduct, setValueProduct] = React.useState(0);
   const [descProduct, setDescProduct] = React.useState("");
   const [imageProduct, setImageProduct] = React.useState("https://firebasestorage.googleapis.com/v0/b/monosotakos.appspot.com/o/imageUpload%2Fchapter.png?alt=media");
+  const [error, setError] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+  const [charge, setCharge] = React.useState(false);
 
   const addNameProduct = (value) => {
     setNameProduct(value);
@@ -39,22 +72,59 @@ function Upload() {
     setImageProduct("https://firebasestorage.googleapis.com/v0/b/monosotakos.appspot.com/o/imageUpload%2Fchapter.png?alt=media");
   };
 
-  const addProduct = () => {
+  const addProduct = async () => {
+    setError(false);
+    if(nameProduct === "" || modelProduct === "" || descProduct === "" || valueProduct === 0 || imageProduct === "https://firebasestorage.googleapis.com/v0/b/monosotakos.appspot.com/o/imageUpload%2Fchapter.png?alt=media"){
+      setMessage("Ninguno de los campos puede estar vacio.");
+      setError(true);
+      setCharge(false);
+    }else{
+      var blob = dataURItoBlob(imageProduct);
+      const formData = new FormData();
+      const idImage = (nameProduct.trim().substr(0,1) + modelProduct.split(' ').join('')).toUpperCase();
+      formData.append('image', blob, `${idImage}.jpg`);
+      axios.post(`https://us-central1-u-app-3100e.cloudfunctions.net/api/image/upload/products/${idImage}`, formData).then((data) => {
+        sendInfo(data.data.url);
+      }).catch((error) => {
+        console.log(error.request);
+        setCharge(false);
+      });
+    }
+  }
+
+  const sendInfo = (url) => {
     const data = {
       name:nameProduct,
       model:modelProduct,
       desc:descProduct,
       value:valueProduct,
-      img:"image"
+      img: url
     }
-    const token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjNjYmM4ZjIyMDJmNjZkMWIxZTEwMTY1OTFhZTIxNTZiZTM5NWM2ZDciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vdS1hcHAtMzEwMGUiLCJhdWQiOiJ1LWFwcC0zMTAwZSIsImF1dGhfdGltZSI6MTYwODg2MTU1OCwidXNlcl9pZCI6IkVsTWxhUWNtRE9lNXJORzl0N2Fjc2xBMDlZdzEiLCJzdWIiOiJFbE1sYVFjbURPZTVyTkc5dDdhY3NsQTA5WXcxIiwiaWF0IjoxNjA4ODYxNTU4LCJleHAiOjE2MDg4NjUxNTgsImVtYWlsIjoiMTk2OTU5MjFAbWFrZS5jbCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyIxOTY5NTkyMUBtYWtlLmNsIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.jGdR2vPOBolCi2FMAsUmAFSE3TlD93PhI3n0XIwjE_m8gVwqkN06Vrphio8xtud8OyHxEXLDsU4ryaVNfpB1L3G_HAAkmd1BYvAko4OdL9XVrl22upGBjQVQKKP2YY7KW358NHAfBM7nfSrSoYLj1vgBnuLPILGBDOLhN_fo9CI5XzXx2BnPY1Ik1wQvzzwRvuJm9DN4CofAhhnVxqmaiNn19_A3f-shIeJ1R2AUL_WAdcmYp8nkmyzMm6cjgbCRKT7Ky8uDyEpGnjAV3ljS5FH3XicITphpRNk7MCJBkDzOw9ikhH9qRa-cubAsr5iGN5jYIU_2dCkmKZ8Sy7o-iA";
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios.post("https://us-central1-u-app-3100e.cloudfunctions.net/api/products/add", data)
     .then((res) => {
-      console.log(res);
+      console.log("Bien");
+      setCharge(false);
+      setSuccess(true);
+      setMessage("Producto ingresado con exito.");
+      cleanData();
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000)
     })
     .catch((error) => {
-      console.log(error);
+      console.log("Mal");
+      console.log(error.request);
+      switch (error.request.status) {
+        case 409:
+          setError(true);
+          setMessage("Este modelo de producto ya se encuentra en la base de datos.");
+          break;
+        default:
+          setMessage("Error desconocido, verifique los datos antes de continuar.");
+          break;
+      }
+      setCharge(false);
     });
   }
 
@@ -82,6 +152,16 @@ function Upload() {
         alignItems="center"
         style={{ marginTop: 20 }}
       >
+      {error && <FormHelperText id="error" error={true}>{message}</FormHelperText>}
+      {success && <FormHelperText id="success">{message}</FormHelperText>}
+      </Grid>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        style={{ marginTop: 20 }}
+      >
         <Button
           style={{
             margin: 20,
@@ -99,11 +179,18 @@ function Upload() {
           }}
           variant="outlined"
           onClick={() => {
+            setCharge(true);
             addProduct();
-            //console.log("Añadir datos");
           }}
         >
-          Ingresar datos
+          {charge ? (
+            <CircularProgress
+              color="secondary"
+              style={{ width: "50%", height: "50%" }}
+            />
+          ) : (
+            "Ingresar datos"
+          )}
         </Button>
       </Grid>
     </>
