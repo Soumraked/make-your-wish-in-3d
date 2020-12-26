@@ -25,10 +25,11 @@ function Details(props) {
       );
     };
     obtenerProductos();
-  }, []);
-
+  }, [url]);
+  
   return <Container>
-      <Detalle name={products.name} desc={products.desc} img={products.img} model={products.model}  />
+      {products.img && <Detalle name={products.name} desc={products.desc} img={products.img} model={products.model}  />}
+      
   </Container>
     
 }

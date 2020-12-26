@@ -1,9 +1,6 @@
-import { Button, Card, CardActionArea, Container, Grid } from '@material-ui/core'
+import {Card, CardActionArea, CardContent, Container,  Grid, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import "./detalle.css"
-import { CommentEmbed } from 'disqus-react';
-import { DiscussionEmbed } from 'disqus-react';
-
 
 
 export default function Detalles({name,desc,img,model}) {
@@ -11,15 +8,13 @@ export default function Detalles({name,desc,img,model}) {
 const id = name;
 const num =desc;
 const [disqus, setDisqus] = useState(false);
-const [disqusBtn, setDisqusBtn] = useState("block");
 
 React.useEffect(() => {
     const obtenerInfo = () => {
       setDisqus(false);
-      setDisqusBtn("block");
     };
     obtenerInfo();
-  }, [id, num, setDisqusBtn, setDisqus]);
+  }, [id, num, setDisqus]);
 
 
 const disqusFunction = () => {
@@ -32,7 +27,6 @@ const disqusFunction = () => {
 
   const seeComments = () => {
     setDisqus(true);
-    setDisqusBtn("none");
     disqusFunction();
   };
 
@@ -40,44 +34,57 @@ const disqusFunction = () => {
 
     return (
         <div >
+
+
         <Container maxWidth="ld" style={{marginTop:"1em"}}  >
+    
+
             <Grid container direction="row" >
                 <Grid container spacing={3} justify="space-between">
                     <Grid item xs={6}>
                         <Card>
                             <CardActionArea>
-                                <img src={img} alt="Imagen del producto" className={"imgProducto"} />
+                                {img.length<10? ( <img src={"https://firebasestorage.googleapis.com/v0/b/u-app-3100e.appspot.com/o/error%2Ferror.jpeg?alt=media"} alt="Imagen del producto" className={"imgProducto"} />)
+                                :(
+                                    <img src={img} alt="Imagen del producto" className={"imgProducto"} />
+                                      )
+                                }
+                               
                             </CardActionArea>
                         </Card>        
                     </Grid>
                     
                     <Grid item xs={6}  >
                         <Card>
-                            <Grid container spacing={3} className="row-top" style={{justifyItems:"center",alignContent:"center"}}> 
+                            <CardContent> 
                                 <Grid item xs={12} justify="space-around" className="row-top" >
-                                <h3 >Nombre del producto :   {name} ({ model} )</h3><hr style={{pt:0}}></hr>
+                                <Typography variant="h6" >
+                                Nombre del producto :   {name} ({ model} )
+                                <hr></hr>
+                                </Typography>
                                  
                                 </Grid>
                                 <Grid item xs={12} className="row-top"  >
-                                <h4  >Descripción del producto:   </h4>
+                                <Typography variant="h5" >Descripción del producto:   </Typography>
                                     <br></br>
-                                    <p>
+                                    <Typography variant="subtitle2">
                                     {desc}                            
-                                    </p>
+                                    </Typography>
                                     <br></br>
                                 </Grid>
                            
-                            </Grid>
+                            </CardContent>
                         </Card>
                    </Grid>
                   
                    <Grid item xs={12}  >
                    {disqus ? (
-            <div id="disqus_thread"></div>
-          ) : (seeComments()
-                )}
+                    <div id="disqus_thread"></div>
+                ) : (seeComments()
+                        )}
                     </Grid>
-                       
+                    
+                 
                
                 </Grid>
             

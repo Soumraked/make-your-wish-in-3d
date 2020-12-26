@@ -7,8 +7,8 @@
 }
 
 .footer-product{
-    background:rgba(234, 28, 28, 0.521);
-    height:2.5em;
+    background:rgba(234, 28, 28, 0.764);
+    height:4.5em;
     position: absolute; 
     color: white;
     width:10em; 
@@ -25,11 +25,12 @@
 
 .text-product{
     /* transform:translateX(80%); */
-    font-size: 1em;
-    position: relative;
+    font-size: 1.5em;
+    text-align: center;
+    transform: translateY(70%);
     /* text-align: end; */
-    /* align-content: flex-end; */
+    vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif !important;
-    margin: 10px ;
+    /* margin: 10px ; */
     word-wrap: break-word;
 }

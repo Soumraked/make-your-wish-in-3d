@@ -3,7 +3,6 @@ import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import withWidth from "@material-ui/core/withWidth";
 import Pagination from "@material-ui/lab/Pagination";
-import { makeStyles } from "@material-ui/core/styles";
 import "./paginacion.css"
 import Card from "./products";
 import Skeleton from "./skeleton";
@@ -61,7 +60,7 @@ function Products(props) {
 
   return (
     <div style={{ paddingTop: 20 }}>
-      <Fragment>
+         <Fragment>
         {productsSection.length > 0 ? (
           <Grid container spacing={3}>
             {productsSection.map((item) => (
@@ -70,13 +69,28 @@ function Products(props) {
                 xs={["xs", "sm"].indexOf(props.width) !== -1 ? 6 : 3}
                 key={item.id}
               >
-                <Card
-                  name={item.name}
-                  id={item.id}
-                  model={item.model}
-                  value={item.value}
-                  img={item.img}
-                />
+              
+            {item.img.length <10? (
+                    <Card
+                      name={item.name}
+                      id={item.id}
+                      model={item.model}
+                      value={item.value}
+                      img={"https://firebasestorage.googleapis.com/v0/b/u-app-3100e.appspot.com/o/error%2Ferror.jpeg?alt=media"}
+                    />
+
+                  )
+                  :(
+                    <Card
+                      name={item.name}
+                      id={item.id}
+                      model={item.model}
+                      value={item.value}
+                      img={item.img}
+
+                    />       
+                      )
+                  }
               </Grid>
             ))}
           </Grid>

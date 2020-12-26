@@ -21,7 +21,7 @@ const UseStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: "80%", // 16:9
   },
   content: {
     margin: 0,
