@@ -5,6 +5,7 @@ import Tab from '@material-ui/core/Tab';
 import Dashboard from "./Tabs/dashboard";
 import Message from "./Tabs/message";
 import Admin from "./Tabs/admin";
+import Modify from "./Tabs/modify";
 
 function Main({token}) {
   const [value, setValue] = React.useState(1);
@@ -24,11 +25,12 @@ function Main({token}) {
         >
           <Tab label="Dashboard" />
           <Tab label="Agregar producto" />
+          <Tab label="Modificar producto" />
           <Tab label="Mensajes" />
         </Tabs>
         
       </Paper>
-      {value === 0 ? <Dashboard /> : value === 1 ? <Admin token={token} /> :<Message /> }
+      {value === 0 ? <Dashboard /> : value === 1 ? <Admin token={token} /> : value === 2 ? <Modify token={token}/> :<Message /> }
     </>
   )
 }
