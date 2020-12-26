@@ -115,7 +115,6 @@ function SearchProduct() {
           }
         }
         setNames(aux);
-        console.log(aux);
       })
       .catch((error) => {
         console.log(error);
