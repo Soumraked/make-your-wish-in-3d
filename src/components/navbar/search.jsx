@@ -1,12 +1,10 @@
-import React, { Fragment } from "react";
-
+import React from "react";
+import SearchProduct from "../search/main";;
 
 
 function Search() {
   return (
-    <Fragment>
-      <h3>Search</h3>
-    </Fragment>
+    <SearchProduct />
   );
 }
 
