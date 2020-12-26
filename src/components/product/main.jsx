@@ -10,16 +10,7 @@ import Skeleton from "./skeleton";
 
 const url = "https://us-central1-u-app-3100e.cloudfunctions.net/api/products/get";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      marginTop: theme.spacing(2),
-    },
-  },
-  pag: {
-    position: "static",
-  },
-}));
+
 
 function Products(props) {
   var skeleton = [];
@@ -27,7 +18,7 @@ function Products(props) {
     skeleton.push(i);
   }
 
-  const classes = useStyles();
+
   
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {

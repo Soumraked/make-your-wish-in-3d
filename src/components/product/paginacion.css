@@ -2,6 +2,34 @@
     bottom: 0;
     text-align: center;
     position: relative;
+    top:1em;
 
 }
 
+.footer-product{
+    background:rgba(234, 28, 28, 0.521);
+    height:2.5em;
+    position: absolute; 
+    color: white;
+    width:10em; 
+    transform: translateY(-100%);
+    border-radius: 10%;
+
+}
+
+@media only screen and (max-width: 268px) {
+    .footer-product{ 
+        width:6em;
+    }
+  }
+
+.text-product{
+    /* transform:translateX(80%); */
+    font-size: 1em;
+    position: relative;
+    /* text-align: end; */
+    /* align-content: flex-end; */
+    font-family: Arial, Helvetica, sans-serif !important;
+    margin: 10px ;
+    word-wrap: break-word;
+}
