@@ -1,4 +1,4 @@
-import {Card, CardActionArea, CardContent, Container,  Grid, Typography } from '@material-ui/core'
+import {Card, CardActionArea, CardContent, Container,  Divider,  Grid, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import "./detalle.css"
 
@@ -36,10 +36,10 @@ const disqusFunction = () => {
         <div >
 
 
-        <Container maxWidth="ld" style={{marginTop:"1em"}}  >
+        <Container maxWidth="ld" style={{marginTop:"2em"}}  >
             <Grid container direction="row" >
                 <Grid container spacing={3} justify="space-between">
-                    <Grid item xs={6}>
+                    <Grid item md={6} style={{marginLeft:-10}}>
                         <Card>
                             <CardActionArea>
                                 {img.length<10? ( 
@@ -56,17 +56,17 @@ const disqusFunction = () => {
                         </Card>        
                     </Grid>
                     
-                    <Grid item xs={6}  >
+                    <Grid item md={6}  >
                         <Card>
                             <CardContent> 
-                                <Grid item xs={12} justify="space-around" className="row-top" >
+                                <Grid item md={12} justify="space-around" className="row-top" >
                                 <Typography variant="h5" >
                                 Nombre del producto :   {name} ({ model} )
                                 <hr></hr>
                                 </Typography>
                                  
                                 </Grid>
-                                <Grid item xs={12} className="row-top"  >
+                                <Grid item md={12} className="row-top"  >
                                 <Typography variant="h6" >Descripción del producto:   </Typography>
                                     <br></br>
                                     <Typography variant="subtitle2" style={{"textAlign": "justify"}}>
@@ -78,7 +78,7 @@ const disqusFunction = () => {
                             </CardContent>
                         </Card>
                    </Grid>
-                  
+                  <Divider/>
                    <Grid item xs={12}  >
                    {disqus ? (
                     <div id="disqus_thread"></div>
