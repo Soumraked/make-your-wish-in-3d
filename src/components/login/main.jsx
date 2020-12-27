@@ -205,6 +205,7 @@ export default function Main({handleAccess, handleToken}) {
               </Grid>
               <Grid container direction="row" justify="center" alignItems="center">
                 <Button
+                 variant="outlined" color="primary"
                   onClick={() => {
                     setCharge(true);
                     handleLogin();

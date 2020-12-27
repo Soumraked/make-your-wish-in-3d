@@ -5,6 +5,7 @@ import Detalle from "../components/detalles/main"
 
 
 
+
 // Recibir el id del producto , mostrar la descripcion
 
 
@@ -17,21 +18,21 @@ function Details(props) {
     const obtenerProductos = () => {
       axios.get(url)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setProducts(data.data);
       })
       .catch((error) => {
         // alert("Ha ocurrido un error.");
-         console.log(error);
+        //  console.log(error);
          window.location.href = "/error";
         } //Mostrar un alert o algo
       );
     };
     obtenerProductos();
   }, [url]);
-  
+
   return <Container>
-      {products.img && <Detalle name={products.name} desc={products.desc} img={products.img} model={products.model} value={products.value}  />}
+      {products.img!==undefined && <Detalle name={products.name} desc={products.desc} img={products.img} model={products.model} value={products.value}  />}
        </Container>
     
 }

@@ -46,7 +46,7 @@ function Admin() {
         
       )}
       <br></br>      <br></br>      <br></br>      <br></br>
-    <Typography style={{color:"red","text-align-last":"center"}}>Su sesión se cerrará automaticamente al ingresar a otro apartado, salir o recargar la página. </Typography>
+    <Typography style={{color:"red","textAlignLast":"center"}}>Su sesión se cerrará automaticamente al ingresar a otro apartado, salir o recargar la página. </Typography>
 
     </div>
     

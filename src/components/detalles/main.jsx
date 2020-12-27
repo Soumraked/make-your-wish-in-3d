@@ -36,9 +36,9 @@ const disqusFunction = () => {
         <div >
     
 
-        <Container maxWidth="ld" style={{marginTop:"2em"}}  >
+        <Container maxWidth="lg" style={{marginTop:"2em"}}  >
             <Grid container direction="row" >
-                <Grid container spacing={3} justify="space-between">
+                <Grid container spacing={3} >
                     <Grid item md={6} style={{marginLeft:-10}}>
                         <Card>
                               <CardActionArea>
@@ -59,7 +59,7 @@ const disqusFunction = () => {
                     <Grid item md={6}  >
                         <Card>
                             <CardContent> 
-                                <Grid item md={12} justify="space-around" className="row-top" >
+                                <Grid item md={12}  className="row-top" >
                                 <Typography variant="h5" >
                                 Nombre del producto :   {name} ({ model} )
                                 <NumberFormat style={{marginLeft:"0.5em",fontWeight:"bold"}} value={value} displayType={'text'} thousandSeparator={true} prefix={'CLP '} />
@@ -83,7 +83,7 @@ const disqusFunction = () => {
                         </Card>
                    </Grid>
                   <Divider/>
-                  <Typography style={{color:"red","text-align-last":"center" ,justifyContent:""}}>Recuerde que son valores referenciales, consultar a tráves de canales disponibles.</Typography>
+                  <Typography style={{color:"red","textAlignLast":"center" ,justifyContent:""}}>Recuerde que son valores referenciales, consultar a tráves de canales disponibles.</Typography>
 
                    <Grid item xs={12}  >
                    {disqus ? (

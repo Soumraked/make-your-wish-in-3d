@@ -48,14 +48,14 @@ function Navbar({ themeState, handleThemeChange }) {
       
         { window.location.pathname!=="/admin" ? (<CustomizedDialogs/>) 
         :
-        (console.log("bien"))
+        (console.log("Bueno"))
         }
           <Toolbar>
             <Drawer
               themeState={themeState}
               handleThemeChange={handleThemeChange}
             />
-            <Typography style={{"font-family": 'Orbitron,sans-serif ',padding:"1em"  }} route="/" ><a style={{"text-decoration": "none","font-size": "2.1vh",    fontVariant: "petite-caps"}} href="/">Make your wish in 3D</a></Typography>
+            <Typography style={{"fontFamily": 'Orbitron,sans-serif ',padding:"1em"  }} route="/" ><a style={{"textDecoration": "none","fontSize": "2.1vh",    fontVariant: "petite-caps"}} href="/">Make your wish in 3D</a></Typography>
             <LinkButton  name="Inicio" route="/"  style={{paddingLeft:"10px"}} />
             <LinkButton name="Productos" route="/productos" />
             <LinkButton class="end" />

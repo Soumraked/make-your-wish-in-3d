@@ -126,7 +126,7 @@ function Formulario(props) {
 
 
     
-    return <Container maxWidth="md" className="classes.datosempresa" >
+    return <Container maxWidth="md" className="classes.datosempresa" style={{    justifyContent: "center"}} >
 
         <Grid container direction="row" className="classes.datosempresa"  >
             {/* {Datos de empresa} */}
@@ -194,7 +194,8 @@ function Formulario(props) {
 
 
             {/* {Formulario} */}
-            <Grid item xs={12} sm={6}   >
+            
+            <Grid item xs={12} sm={6} style={{alignContent:"center"}}  >
                 {/* {Nombre} */}
                 <TextField
                     className={classes.separacion} 
