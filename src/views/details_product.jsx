@@ -17,7 +17,7 @@ function Details(props) {
     const obtenerProductos = () => {
       axios.get(url)
       .then((data) => {
- 
+        console.log(data);
         setProducts(data.data);
       })
       .catch((error) => {
@@ -31,7 +31,7 @@ function Details(props) {
   }, [url]);
   
   return <Container>
-      {products.img && <Detalle name={products.name} desc={products.desc} img={products.img} model={products.model}  />}
+      {products.img && <Detalle name={products.name} desc={products.desc} img={products.img} model={products.model} value={products.value}  />}
        </Container>
     
 }
