@@ -37,14 +37,16 @@ const disqusFunction = () => {
 
 
         <Container maxWidth="ld" style={{marginTop:"1em"}}  >
-    
-
             <Grid container direction="row" >
                 <Grid container spacing={3} justify="space-between">
                     <Grid item xs={6}>
                         <Card>
                             <CardActionArea>
-                                {img.length<10? ( <img src={"https://firebasestorage.googleapis.com/v0/b/u-app-3100e.appspot.com/o/error%2Ferror.jpeg?alt=media"} alt="Imagen del producto" className={"imgProducto"} />)
+                                {img.length<10? ( 
+                                    <div class="sketchfab-embed-wrapper">
+    <iframe title="A 3D model" width="640" height="480" src="https://sketchfab.com/models/faef9fe5ace445e7b2989d1c1ece361c/embed?autostart=0&amp;ui_controls=1&amp;ui_infos=1&amp;ui_inspector=1&amp;ui_stop=1&amp;ui_watermark=1&amp;ui_watermark_link=1" frameborder="0" allow="autoplay; fullscreen; vr" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+</div>
+                        )
                                 :(
                                     <img src={img} alt="Imagen del producto" className={"imgProducto"} />
                                       )

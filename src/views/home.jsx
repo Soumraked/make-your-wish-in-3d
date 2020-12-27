@@ -9,7 +9,6 @@ function Home() {
       <CustomizedDialogs/>
       <div>
        <Carousel/>
-
       </div>
     </>
     );

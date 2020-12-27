@@ -3,11 +3,11 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
 
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import { Card, CardActionArea, CardMedia } from '@material-ui/core';
 
 const styles = (theme) => ({
   root: {
@@ -36,11 +36,7 @@ const DialogTitle = withStyles(styles)((props) => {
   );
 });
 
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
+
 
 
 
@@ -57,16 +53,21 @@ export default function CustomizedDialogs() {
  
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+       
+        <Card>
+          <CardActionArea>
+            <CardMedia CardMedia
+          component="img"
+          alt="Contemplative Reptile"
+          height="200%"
+          width="200%"
+          image="https://firebasestorage.googleapis.com/v0/b/u-app-3100e.appspot.com/o/geek-megasale-enero-2020-n01.jpg?alt=media&token=b6041f3b-cc4e-4f63-af11-6561526ebbca"
+          style={{objectFit:"scale-down;"}}
+           >
+            </CardMedia>
+          </CardActionArea>
+        </Card>
         </DialogTitle>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-            in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          </Typography>
- 
-        </DialogContent>
-
       </Dialog>
     </div>
   );
