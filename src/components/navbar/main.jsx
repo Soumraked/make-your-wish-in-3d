@@ -21,6 +21,7 @@ import Moon from "@material-ui/icons/Brightness4";
 import Sun from "@material-ui/icons/Brightness7";
 import IconButton from "@material-ui/core/IconButton";
 import { Typography } from "@material-ui/core";
+import CustomizedDialogs from "../../views/popup";
 
 //Style Navbar
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
     margin: 0,
   },
+  letra:{
+    fontFamily: "Orbitron,sans-serif" ,
+  }
 }));
 // End Style
 
@@ -41,14 +45,18 @@ function Navbar({ themeState, handleThemeChange }) {
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Container maxWidth="lg" disableGutters>
+      
+        { window.location.pathname!=="/admin" ? (<CustomizedDialogs/>) 
+        :
+        (console.log("bien"))
+        }
           <Toolbar>
             <Drawer
               themeState={themeState}
               handleThemeChange={handleThemeChange}
             />
             <Typography style={{"font-family": 'Orbitron,sans-serif ',padding:"1em"  }} route="/" ><a style={{"text-decoration": "none","font-size": "2.1vh"}} href="/">Make your wish in 3D</a></Typography>
-         
-            <LinkButton name="Inicio" route="/"  style={{paddingLeft:"10px"}} />
+            <LinkButton  name="Inicio" route="/"  style={{paddingLeft:"10px"}} />
             <LinkButton name="Productos" route="/productos" />
             <LinkButton class="end" />
 

@@ -16,7 +16,6 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-//Librarys
 import Container from "@material-ui/core/Container";
 
 function App() {
@@ -48,12 +47,12 @@ function App() {
     };
     obtenerInfo();
   }, [prefersDarkMode, setThemeState]);
+
   return (
     <div className="page-container">
       <div className="content-wrap" >
     <ThemeProvider theme={theme}>
         <CssBaseline />
-    
       <Router>
           <Navbar
             themeState={themeState}

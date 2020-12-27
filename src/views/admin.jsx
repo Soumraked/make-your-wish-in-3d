@@ -3,6 +3,7 @@ import Main from "../components/admin/main";
 import Login from "../components/login/main";
 import Grid from "@material-ui/core/Grid";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { Typography } from "@material-ui/core";
 
 function Admin() {
 
@@ -20,7 +21,8 @@ function Admin() {
   };
 
   return <>
-  <div style={{paddingTop:20}}>
+
+  <div style={{paddingTop:80}}>
       {access === 1 ? (
         <Main token={token}/>
       ) : access === 2 ? (
@@ -41,7 +43,11 @@ function Admin() {
             <LinearProgress color="secondary" />
           </div>
         </Grid>
+        
       )}
+      <br></br>      <br></br>      <br></br>      <br></br>
+    <Typography style={{color:"red","text-align-last":"center"}}>Su sesión se cerrará automaticamente al ingresar a otro apartado, salir o recargar la página. </Typography>
+
     </div>
     
   </>;
