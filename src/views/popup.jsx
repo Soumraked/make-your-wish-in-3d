@@ -63,7 +63,7 @@ export default function CustomizedDialogs() {
           height="200%"
           width="200%"
           image="https://firebasestorage.googleapis.com/v0/b/u-app-3100e.appspot.com/o/geek-megasale-enero-2020-n01.jpg?alt=media&token=b6041f3b-cc4e-4f63-af11-6561526ebbca"
-          style={{objectFit:"scale-down;"}}
+          style={{objectFit:"scale-down"}}
            >
             </CardMedia>
           </CardActionArea>

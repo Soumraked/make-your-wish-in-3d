@@ -7,13 +7,13 @@
 }
 
 .footer-product{
-    background:rgba(234, 28, 28, 0.764);
+    background:rgba(251, 230, 0, 0.993);
     height:3.5em;
     position: absolute; 
-    color: white;
-    width:13em; 
+    color: rgb(0, 0, 0);
+    width:11em; 
     transform: translateY(-100%);
-    border-radius: 10%;
+    border-radius: 9%;
 
 }
 

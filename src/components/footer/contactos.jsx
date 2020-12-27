@@ -126,11 +126,11 @@ function Formulario(props) {
 
 
     
-    return <Container maxWidth="md" className="classes.datosempresa" >
+    return <Container maxWidth="md" className="classes.datosempresa" style={{    justifyContent: "center"}} >
 
         <Grid container direction="row" className="classes.datosempresa"  >
             {/* {Datos de empresa} */}
-            <Grid item xs={12} sm={6} className={"classes.datosempresa"} >
+            <Grid item xs={12} md={6} className={"classes.datosempresa"} >
                 <br></br>
                 <Grid container spacing={2}>
 
@@ -146,21 +146,21 @@ function Formulario(props) {
                     </Grid>
                     <Grid item md={3} sm={3} style={{ textAlign: 'center', }} >
 
-                        <a href={info.fb}><SiFacebook size={'2em'} /> </a>
+                        <a href={info.fb}><SiFacebook size={'2em'} style={{color:"#4267B2"}} /> </a>
 
                         <Typography style={{ textAlign: "center" }}
                             variant={props.width === "xs" ? "caption" : "subtitle1"}
                             component="div"> Facebook</Typography>
                     </Grid>
                     <Grid item xs={3} sm={4} style={{ textAlign: 'center', }}>
-                        <a href={info.ig} > <SiInstagram size={'2em'} /></a>
+                        <a href={info.ig} > <SiInstagram size={'2em'} style={{color:"#f28168"}} /></a>
 
                         <Typography style={{ textAlign: "center" }}
                             variant={props.width === "xs" ? "caption" : "subtitle1"}
                             component="div"> Instagram</Typography>
                     </Grid>
                     <Grid item xs={3} sm={3} style={{ textAlign: 'center', }}>
-                        <a href={info.wsp} > <SiWhatsapp size={'2em'} /></a>
+                        <a href={info.wsp} > <SiWhatsapp size={'2em'} style={{color:"#25D366"}} /></a>
 
 
                         <Typography
@@ -194,7 +194,8 @@ function Formulario(props) {
 
 
             {/* {Formulario} */}
-            <Grid item xs={12} sm={6}   >
+            
+            <Grid item xs={12} sm={6} style={{alignContent:"center"}}  >
                 {/* {Nombre} */}
                 <TextField
                     className={classes.separacion} 
@@ -238,14 +239,15 @@ function Formulario(props) {
                     {messageStatus !== 0 && <FormHelperText id="error" error={messageStatus === 2}>{message}</FormHelperText>}
                 </Grid>
                 <Grid container direction="row" justify="center" alignItems="center">
-                    <Button className={classes.boton} 
+                    <Button className={classes.boton}
+                     variant="outlined" color="primary"  
                         onClick={() => {
                             setCharge(true);
                             enviarmail();
                         }}>
                             {charge ? (
                         <CircularProgress
-                        color="secondary"
+                         
                         style={{ width: "50%", height: "50%" }}
                         />
                     ) : (

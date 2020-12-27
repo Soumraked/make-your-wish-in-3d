@@ -29,7 +29,7 @@ function Products(props) {
       .catch((error) => {
         alert("Ha ocurrido un error.");
         console.log(error);
-        console.log("caca")
+        
         } //Mostrar un alert o algo
       );
     };
