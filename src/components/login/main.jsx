@@ -17,6 +17,7 @@ import axios from "axios";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
@@ -221,7 +222,7 @@ export default function Main({handleAccess, handleToken}) {
               </Grid>
           </CardContent>
       </Card>
-          <h3>Su sesión se cerrará automaticamente al ingresar a otro apartado, salir o recargar la página.</h3>
+
     </>
   )
 }

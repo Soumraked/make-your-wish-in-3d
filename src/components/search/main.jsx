@@ -186,7 +186,7 @@ function SearchProduct() {
 
   return (
     <div className={classes.rootSearch}>
-      <div className={classes.search}>
+      <div className={classes.search}> 
         <div className={classes.searchIcon}>
           <SearchIcon />
         </div>

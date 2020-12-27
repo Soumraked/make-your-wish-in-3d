@@ -60,16 +60,16 @@ const disqusFunction = () => {
                         <Card>
                             <CardContent> 
                                 <Grid item xs={12} justify="space-around" className="row-top" >
-                                <Typography variant="h6" >
+                                <Typography variant="h5" >
                                 Nombre del producto :   {name} ({ model} )
                                 <hr></hr>
                                 </Typography>
                                  
                                 </Grid>
                                 <Grid item xs={12} className="row-top"  >
-                                <Typography variant="h5" >Descripción del producto:   </Typography>
+                                <Typography variant="h6" >Descripción del producto:   </Typography>
                                     <br></br>
-                                    <Typography variant="subtitle2">
+                                    <Typography variant="subtitle2" style={{"textAlign": "justify"}}>
                                     {desc}                            
                                     </Typography>
                                     <br></br>
