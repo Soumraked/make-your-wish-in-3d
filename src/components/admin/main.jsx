@@ -3,12 +3,13 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Dashboard from "./Tabs/dashboard";
-import Message from "./Tabs/message";
+import Info from "./Tabs/info";
 import Admin from "./Tabs/admin";
 import Modify from "./Tabs/modify";
+import Password from "./Tabs/password";
 
-function Main({token}) {
-  const [value, setValue] = React.useState(1);
+function Main({ token }) {
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -18,19 +19,22 @@ function Main({token}) {
       <Paper square>
         <Tabs
           value={value}
-          indicatorColor="primary"
-          textColor="primary"
+          indicatorColor="secondary"
+          textColor="secondary"
           onChange={handleChange}
-          aria-label="disabled tabs example"
+          scrollButtons="auto"
+          variant="scrollable"
+          aria-label="scrollable auto tabs example"
         >
           <Tab label="Dashboard" />
           <Tab label="Agregar producto" />
           <Tab label="Modificar producto" />
-          <Tab label="Mensajes" />
+          <Tab label="Información pública" />
+          <Tab label="Cambio de contraseña" />
         </Tabs>
-        
+
       </Paper>
-      {value === 0 ? <Dashboard /> : value === 1 ? <Admin token={token} /> : value === 2 ? <Modify token={token}/> :<Message /> }
+      {value === 0 ? <Dashboard /> : value === 1 ? <Admin token={token} /> : value === 2 ? <Modify token={token} /> : value === 3 ? < Info token={token} /> : <Password token={token} />}
     </>
   )
 }
