@@ -46,16 +46,14 @@ function Navbar({ themeState, handleThemeChange }) {
       <AppBar position="static" color="default">
         <Container maxWidth="lg" disableGutters>
       
-        { window.location.pathname!=="/admin" ? (<CustomizedDialogs/>) 
-        :
-        (console.log("Bueno"))
-        }
+        { window.location.pathname!=="/admin" && (<CustomizedDialogs/>) }
           <Toolbar>
             <Drawer
               themeState={themeState}
               handleThemeChange={handleThemeChange}
             />
             <Typography style={{"fontFamily": 'Orbitron,sans-serif ',padding:"1em"  }} route="/" ><a style={{"textDecoration": "none","fontSize": "2.1vh",    fontVariant: "petite-caps"}} href="/">Make your wish in 3D</a></Typography>
+
             <LinkButton  name="Inicio" route="/"  style={{paddingLeft:"10px"}} />
             <LinkButton name="Productos" route="/productos" />
             <LinkButton class="end" />

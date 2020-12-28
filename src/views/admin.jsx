@@ -22,34 +22,33 @@ function Admin() {
 
   return <>
 
-  <div style={{paddingTop:80}}>
+    <div style={{ paddingTop: 80 }}>
       {access === 1 ? (
-        <Main token={token}/>
+        <Main token={token} />
       ) : access === 2 ? (
         <Grid container direction="row" justify="center" alignItems="center">
-          <Login handleAccess={handleAccess} handleToken={handleToken}/>
+          <Login handleAccess={handleAccess} handleToken={handleToken} />
+          <br></br>      <br></br>      <br></br>      <br></br>
+          <Typography style={{ color: "red", textAlignLast: "center" }}>Su sesión se cerrará automaticamente al ingresar a otro apartado, salir o recargar la página. </Typography>
         </Grid>
       ) : (
-        <Grid container direction="row" justify="center" alignItems="center">
-          <h1>Error inesperado, recarge la página para continuar.</h1>
-          <div
-            style={{
-              width: "100%",
-              "& > * + *": {
-                marginTop: "10%",
-              },
-            }}
-          >
-            <LinearProgress color="secondary" />
-          </div>
-        </Grid>
-        
-      )}
-      <br></br>      <br></br>      <br></br>      <br></br>
-    <Typography style={{color:"red","textAlignLast":"center"}}>Su sesión se cerrará automaticamente al ingresar a otro apartado, salir o recargar la página. </Typography>
-
+            <Grid container direction="row" justify="center" alignItems="center">
+              <h1>Error inesperado, recarge la página para continuar.</h1>
+              <div
+                style={{
+                  width: "100%",
+                  "& > * + *": {
+                    marginTop: "10%",
+                  },
+                }}
+              >
+                <LinearProgress color="secondary" />
+              </div>
+            </Grid>
+          )
+      }
     </div>
-    
+
   </>;
 }
 
