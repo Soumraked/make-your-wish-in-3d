@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 
 import "./paginacion.css"
 import { Link } from "react-router-dom";
+import NumberFormat from "react-number-format";
 
 const UseStyles = makeStyles((theme) => ({
   root: {
@@ -67,7 +68,7 @@ function productCard(props) {
 
           <div className="footer-product" >
             <h4  className="text-product">
-              Valor ${props.value}
+            <NumberFormat value={props.value} displayType={'text'} thousandSeparator={true} prefix={'CLP '} />
             </h4>
           </div>
           <CardContent className={classes.content}>
