@@ -34,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     width: "50%",
   },
+  card: {
+    width: "50%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  }
 }));
 
 
@@ -172,7 +178,7 @@ export default function ChangePassword({ token }) {
   return (
     <>
       <Grid container direction="row" justify="center" alignItems="center" style={{ paddingTop: 20 }}>
-        <Card style={{ width: "50%" }}>
+        <Card className={classes.card}>
           <CardContent>
             <Grid container direction="row" justify="center" alignItems="center">
               <Grid item xs={12}>
@@ -185,7 +191,7 @@ export default function ChangePassword({ token }) {
                   <TextField
                     type="email"
                     id="standard-required"
-                    label="Identificador"
+                    label="Email"
                     color="secondary"
                     value={nick}
                     onChange={(event) => {
@@ -314,6 +320,7 @@ export default function ChangePassword({ token }) {
             </Grid>
             <Grid container direction="row" justify="center" alignItems="center">
               <Button
+                variant="outlined" color="secondary"
                 onClick={() => {
                   setCharge(true);
                   handleChangePass();
