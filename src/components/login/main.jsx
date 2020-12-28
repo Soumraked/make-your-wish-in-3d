@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Main({handleAccess, handleToken}) {
+export default function Main({ handleAccess, handleToken }) {
   const classes = useStyles();
 
   const [values, setValues] = React.useState({
@@ -78,17 +78,17 @@ export default function Main({handleAccess, handleToken}) {
         `https://us-central1-u-app-3100e.cloudfunctions.net/api/admin/login`,
         {
           rut: nick,
-          password:values.password
+          password: values.password
         }
       )
       .then((data) => {
         setMessageName("");
         setMessagePass("");
-        if(data.status === 200){
+        if (data.status === 200) {
           handleToken(data.data.token);
           handleAccess(1);
           return controller.abort();
-        }else{
+        } else {
           setMessageName(
             "Error desconocido, verifique los datos antes de continuar."
           );
@@ -96,7 +96,7 @@ export default function Main({handleAccess, handleToken}) {
             "Error desconocido, verifique los datos antes de continuar."
           );
         }
-        setCharge(false);     
+        setCharge(false);
       })
       .catch((error) => {
         setMessageName("");
@@ -137,91 +137,91 @@ export default function Main({handleAccess, handleToken}) {
   };
   return (
     <>
-    
-    <Card>
+
+      <Card>
         <CardContent>
           <h2>Inicie sesión para acceder a las herramientas de administración.</h2>
           <Grid container direction="row" justify="center" alignItems="center">
-                <Grid item xs={12}>
-                  <FormControl
-                    className={clsx(classes.margin, classes.textField)}
-                    style={{
-                      width: "95%",
-                    }}
-                  >
-                    <TextField
-                      type="email"
-                      id="standard-required"
-                      label="Identificador"
-                      color="secondary"
-                      value={nick}
-                      onChange={(event) => {
-                        handleNick(event);
-                      }}
-                      error={messageName !== ""}
-                      helperText={messageName}
-                      autoComplete="off"
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl
-                    className={clsx(classes.margin, classes.textField)}
-                    style={{ width: "95%" }}
-                    error={messagePass !== ""}
-                  >
-                    <InputLabel
-                      htmlFor="standard-adornment-password"
-                      color="secondary"
-                    >
-                      Contraseña
-                    </InputLabel>
-                    <Input
-                      error={messagePass !== ""}
-                      color="secondary"
-                      id="pass-error"
-                      type={values.showPassword ? "text" : "password"}
-                      value={values.password}
-                      onChange={handleChange("password")}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                          >
-                            {values.showPassword ? (
-                              <Visibility />
-                            ) : (
-                              <VisibilityOff />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                    />
-                    <FormHelperText id="pass-error"> {messagePass} </FormHelperText>
-                  </FormControl>
-                </Grid>
-              </Grid>
-              <Grid container direction="row" justify="center" alignItems="center">
-                <Button
-                 variant="outlined" color="primary"
-                  onClick={() => {
-                    setCharge(true);
-                    handleLogin();
+            <Grid item xs={12}>
+              <FormControl
+                className={clsx(classes.margin, classes.textField)}
+                style={{
+                  width: "95%",
+                }}
+              >
+                <TextField
+                  type="email"
+                  id="standard-required"
+                  label="Identificador"
+                  color="secondary"
+                  value={nick}
+                  onChange={(event) => {
+                    handleNick(event);
                   }}
+                  error={messageName !== ""}
+                  helperText={messageName}
+                  autoComplete="off"
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl
+                className={clsx(classes.margin, classes.textField)}
+                style={{ width: "95%" }}
+                error={messagePass !== ""}
+              >
+                <InputLabel
+                  htmlFor="standard-adornment-password"
+                  color="secondary"
                 >
-                  {charge ? (
-                    <CircularProgress
-                      color="secondary"
-                      style={{ width: "50%", height: "50%" }}
-                    />
-                  ) : (
-                    "Ingresar"
-                  )}
-                </Button>
-              </Grid>
-          </CardContent>
+                  Contraseña
+                    </InputLabel>
+                <Input
+                  error={messagePass !== ""}
+                  color="secondary"
+                  id="pass-error"
+                  type={values.showPassword ? "text" : "password"}
+                  value={values.password}
+                  onChange={handleChange("password")}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {values.showPassword ? (
+                          <Visibility />
+                        ) : (
+                            <VisibilityOff />
+                          )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                <FormHelperText id="pass-error"> {messagePass} </FormHelperText>
+              </FormControl>
+            </Grid>
+          </Grid>
+          <Grid container direction="row" justify="center" alignItems="center">
+            <Button
+              variant="outlined" color="secondary"
+              onClick={() => {
+                setCharge(true);
+                handleLogin();
+              }}
+            >
+              {charge ? (
+                <CircularProgress
+                  color="secondary"
+                  style={{ width: "50%", height: "50%" }}
+                />
+              ) : (
+                  "Ingresar"
+                )}
+            </Button>
+          </Grid>
+        </CardContent>
       </Card>
 
     </>

@@ -22,7 +22,7 @@ function dataURItoBlob(dataURI) {
   var ab = new ArrayBuffer(byteString.length);
   var ia = new Uint8Array(ab);
   for (var i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
+    ia[i] = byteString.charCodeAt(i);
   }
 
   //Old Code
@@ -32,12 +32,12 @@ function dataURItoBlob(dataURI) {
   //return bb.getBlob(mimeString);
 
   //New Code
-  return new Blob([ab], {type: mimeString});
+  return new Blob([ab], { type: mimeString });
 
 
 }
 
-function Upload({token}) {
+function Upload({ token }) {
   const [nameProduct, setNameProduct] = React.useState("");
   const [modelProduct, setModelProduct] = React.useState("");
   const [valueProduct, setValueProduct] = React.useState(0);
@@ -74,14 +74,14 @@ function Upload({token}) {
 
   const addProduct = async () => {
     setError(false);
-    if(nameProduct === "" || modelProduct === "" || descProduct === "" || valueProduct === 0 || imageProduct === "https://firebasestorage.googleapis.com/v0/b/monosotakos.appspot.com/o/imageUpload%2Fchapter.png?alt=media"){
+    if (nameProduct === "" || modelProduct === "" || descProduct === "" || valueProduct === 0 || imageProduct === "https://firebasestorage.googleapis.com/v0/b/monosotakos.appspot.com/o/imageUpload%2Fchapter.png?alt=media") {
       setMessage("Ninguno de los campos puede estar vacio.");
       setError(true);
       setCharge(false);
-    }else{
+    } else {
       var blob = dataURItoBlob(imageProduct);
       const formData = new FormData();
-      const idImage = (nameProduct.trim().substr(0,1) + modelProduct.split(' ').join('')).toUpperCase();
+      const idImage = (nameProduct.trim().substr(0, 1) + modelProduct.split(' ').join('')).toUpperCase().replace(/[^a-z0-9]/gi, '');
       formData.append('image', blob, `${idImage}.jpg`);
       axios.post(`https://us-central1-u-app-3100e.cloudfunctions.net/api/image/upload/products/${idImage}`, formData).then((data) => {
         sendInfo(data.data.url);
@@ -94,38 +94,38 @@ function Upload({token}) {
 
   const sendInfo = (url) => {
     const data = {
-      name:nameProduct,
-      model:modelProduct,
-      desc:descProduct,
-      value:valueProduct,
+      name: nameProduct,
+      model: modelProduct,
+      desc: descProduct,
+      value: valueProduct,
       img: url
     }
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios.post("https://us-central1-u-app-3100e.cloudfunctions.net/api/products/add", data)
-    .then((res) => {
-      console.log("Bien");
-      setCharge(false);
-      setSuccess(true);
-      setMessage("Producto ingresado con exito.");
-      cleanData();
-      setTimeout(() => {
-        setSuccess(false);
-      }, 3000)
-    })
-    .catch((error) => {
-      console.log("Mal");
-      console.log(error.request);
-      switch (error.request.status) {
-        case 409:
-          setError(true);
-          setMessage("Este modelo de producto ya se encuentra en la base de datos.");
-          break;
-        default:
-          setMessage("Error desconocido, verifique los datos antes de continuar.");
-          break;
-      }
-      setCharge(false);
-    });
+      .then((res) => {
+        console.log("Bien");
+        setCharge(false);
+        setSuccess(true);
+        setMessage("Producto ingresado con exito.");
+        cleanData();
+        setTimeout(() => {
+          setSuccess(false);
+        }, 3000)
+      })
+      .catch((error) => {
+        console.log("Mal");
+        console.log(error.request);
+        switch (error.request.status) {
+          case 409:
+            setError(true);
+            setMessage("Este modelo de producto ya se encuentra en la base de datos.");
+            break;
+          default:
+            setMessage("Error desconocido, verifique los datos antes de continuar.");
+            break;
+        }
+        setCharge(false);
+      });
   }
 
   return (
@@ -152,8 +152,8 @@ function Upload({token}) {
         alignItems="center"
         style={{ marginTop: 20 }}
       >
-      {error && <FormHelperText id="error" error={true}>{message}</FormHelperText>}
-      {success && <FormHelperText id="success">{message}</FormHelperText>}
+        {error && <FormHelperText id="error" error={true}>{message}</FormHelperText>}
+        {success && <FormHelperText id="success">{message}</FormHelperText>}
       </Grid>
       <Grid
         container
@@ -171,7 +171,14 @@ function Upload({token}) {
             cleanData();
           }}
         >
-          Limpiar campos
+          {charge ? (
+            <CircularProgress
+              color="secondary"
+              style={{ width: "50%", height: "50%" }}
+            />
+          ) : (
+              "Limpiar campos"
+            )}
         </Button>
         <Button
           style={{
@@ -189,8 +196,8 @@ function Upload({token}) {
               style={{ width: "50%", height: "50%" }}
             />
           ) : (
-            "Ingresar datos"
-          )}
+              "Ingresar datos"
+            )}
         </Button>
       </Grid>
     </>
