@@ -90,42 +90,40 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SearchProduct({
-  handleModify,
-  addName,
-  addModel,
-  addValue,
-  addDesc,
-  addImage
+  handleDelete,
+  handleProduct,
+  confirmation
 }) {
   const classes = useStyles();
 
   const [names, setNames] = React.useState({});
 
   React.useEffect(() => {
-    const obtenerInfo = () => {
-      axios.get("https://us-central1-u-app-3100e.cloudfunctions.net/api/products/search")
-        .then((data) => {
-          let aux = {};
-          for (let i = 0; i < data.data.length; i++) {
-            aux[data.data[i].id] = {
-              id: data.data[i].id,
-              image: data.data[i].img.length > 10 ? data.data[i].img : "https://firebasestorage.googleapis.com/v0/b/u-app-3100e.appspot.com/o/error%2Ferror.jpeg?alt=media",
-              name: `${data.data[i].name} ${data.data[i].model}`,
-              names: `${data.data[i].name} ${data.data[i].model}`,
-              value: data.data[i].value.toString(),
-              model: data.data[i].model,
-              desc: data.data[i].desc
-            }
-          }
-          setNames(aux);
-        })
-        .catch((error) => {
-          console.log(error);
-        } //Mostrar un alert o algo
-        );
-    };
     obtenerInfo();
   }, []);
+
+  const obtenerInfo = () => {
+    axios.get("https://us-central1-u-app-3100e.cloudfunctions.net/api/products/search")
+      .then((data) => {
+        let aux = {};
+        for (let i = 0; i < data.data.length; i++) {
+          aux[data.data[i].id] = {
+            id: data.data[i].id,
+            image: data.data[i].img.length > 10 ? data.data[i].img : "https://firebasestorage.googleapis.com/v0/b/u-app-3100e.appspot.com/o/error%2Ferror.jpeg?alt=media",
+            name: `${data.data[i].name} ${data.data[i].model}`,
+            names: `${data.data[i].name} ${data.data[i].model}`,
+            value: data.data[i].value.toString(),
+            model: data.data[i].model,
+            desc: data.data[i].desc
+          }
+        }
+        setNames(aux);
+      })
+      .catch((error) => {
+        console.log(error);
+      } //Mostrar un alert o algo
+      );
+  };
 
 
   const [search, setSearch] = useState("");
@@ -136,6 +134,12 @@ function SearchProduct({
     setSearch(event.target.value);
     searchName(event.target.value);
   };
+
+  const handleClick = () => {
+    if (Object.keys(names).length === 0) {
+      obtenerInfo();
+    }
+  }
 
   const searchName = (name) => {
     let options = [];
@@ -148,12 +152,9 @@ function SearchProduct({
     setOptions(options);
   };
   const handleClickSearch = (value) => {
-    handleModify(true);
-    addName(names[value].name);
-    addModel(names[value].model);
-    addValue(names[value].value);
-    addDesc(names[value].desc);
-    addImage(names[value].image);
+    handleDelete(true);
+    handleProduct(names[value]);
+    //console.log(names[value]);
   };
 
   return (
@@ -168,6 +169,7 @@ function SearchProduct({
         <TextField
           className={classes.textField}
           value={search}
+          onClick={handleClick}
           onChange={handleChange}
           label="Buscar"
           color="secondary"
