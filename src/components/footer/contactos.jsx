@@ -40,12 +40,31 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+
+var Recaptcha = require('react-recaptcha');
+
+
 function Formulario(props) {
     const classes = useStyles();
 
     const [email, setEmail] = React.useState("");
     const [asunto, setAsunto] = React.useState("");
     const [comentario, setComentario] = React.useState("");
+    const [captcha,setCaptcha]=React.useState(false);
+    const [mensajeCaptcha,SetmensajeCaptcha]=React.useState("");
+  
+    var callback = function () {
+        console.log('Done!!!!');
+      };
+       
+      // specifying verify callback function
+    var verifyCallback = function (response) {
+        console.log(response);
+        if(response){
+            setCaptcha(true);
+        }
+    };
+
     const [info, setInfo] = React.useState({
         fb: "https://facebook.com",
         ig: "https://intagram.com",
@@ -84,49 +103,56 @@ function Formulario(props) {
     };
 
     const enviarmail = () => {
-        if (email === "" || asunto === "" || comentario === "") {
-            setMessageStatus(2);
-            setMessage("Los campos anteriores no pueden estar vacios.");
-            setCharge(false);
-        } else {
-            setMessage("");
-            setMessageStatus(0);
-            var data = {
-                service_id: 'service_ht4t8q7',
-                template_id: 'template_ojtj6cb',
-                user_id: 'user_bGr1D7ZHFaYb8uucOFAa2',
-                template_params: {
-                    'email': email,
-                    'asunto': asunto,
-                    'comentario': comentario,
-                    'reply-to': email,
-                }
-            };
-            axios.post('https://api.emailjs.com/api/v1.0/email/send', data, { Headers: { "content-Type": "application/json" } })
-                .then(res => {
-                    setCharge(false);
-                    setMessageStatus(1);
-                    setMessage("Correo enviado exitosamente.");
-                    cleanData();
-                    setTimeout(() => {
-                        setMessageStatus(0);
-                        setMessage("");
-                    }, 3000);
-
-                })
-                .catch(error => {
-                    setMessageStatus(2);
-                    setMessage("Ha ocurrido un error, intenta nuevamente más tarde.");
-                    console.log(error);
-                    setCharge(false);
-                });
+        if(captcha===true ){
+            SetmensajeCaptcha("");
+            if (email === "" || asunto === "" || comentario === "") {
+                setMessageStatus(2);
+                setMessage("Los campos anteriores no pueden estar vacios.");
+                setCharge(false);
+            } else {
+                setMessage("");
+                setMessageStatus(0);
+                var data = {
+                    service_id: 'service_ht4t8q7',
+                    template_id: 'template_ojtj6cb',
+                    user_id: 'user_bGr1D7ZHFaYb8uucOFAa2',
+                    template_params: {
+                        'email': email,
+                        'asunto': asunto,
+                        'comentario': comentario,
+                        'reply-to': email,
+                    }
+                };
+                axios.post('https://api.emailjs.com/api/v1.0/email/send', data, { Headers: { "content-Type": "application/json" } })
+                    .then(res => {
+                        setCharge(false);
+                        setMessageStatus(1);
+                        setMessage("Correo enviado exitosamente.");
+                        cleanData();
+                        setTimeout(() => {
+                            setMessageStatus(0);
+                            setMessage("");
+                        }, 3000);
+    
+                    })
+                    .catch(error => {
+                        setMessageStatus(2);
+                        setMessage("Ha ocurrido un error, intenta nuevamente más tarde.");
+                        console.log(error);
+                        setCharge(false);
+                    });
+            }
+    
+        }else{
+            SetmensajeCaptcha("Revisa que no eres un robot! y vuelve a presionar el boton");
         }
-
+       
     }
 
-
-
+  
+    
     return <Container maxWidth="md" className="classes.datosempresa" style={{ justifyContent: "center" }} >
+   
 
         <Grid container direction="row" className="classes.datosempresa"  >
             {/* {Datos de empresa} */}
@@ -235,17 +261,16 @@ function Formulario(props) {
                         setComentario(event.target.value);
                     }}
                 />
-                <Grid container direction="row" justify="center" alignItems="center">
-                    {messageStatus !== 0 && <FormHelperText id="error" error={messageStatus === 2}>{message}</FormHelperText>}
-                </Grid>
+         
                 <Grid container direction="row" justify="center" alignItems="center">
                     <Button className={classes.boton}
                         variant="outlined" color="secondary"
+                        style={{marginRight:"1em"}}
                         onClick={() => {
-                            setCharge(true);
+                            // setCharge(true);
                             enviarmail();
                         }}>
-                        {charge ? (
+                        {charge && captcha===true ? (
                             <CircularProgress
 
                                 style={{ width: "50%", height: "50%" }}
@@ -254,6 +279,19 @@ function Formulario(props) {
                                 "Enviar"
                             )}
                     </Button>
+
+                            <Recaptcha
+                            sitekey="6Leu5RcaAAAAAGbtL_kaFErj6gUTVU7YZ-7EM1Ru"
+                            render="explicit"
+                            verifyCallback={verifyCallback}
+                            onloadCallback={callback}
+                            style={{} }
+                        />
+                        {mensajeCaptcha}
+
+                        <Grid container direction="row" justify="center" alignItems="center">
+                    {messageStatus !== 0 && <FormHelperText id="error" error={messageStatus === 2}>{message}</FormHelperText>}
+                </Grid>
                 </Grid>
 
 

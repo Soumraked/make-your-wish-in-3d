@@ -52,7 +52,7 @@ function Navbar({ themeState, handleThemeChange }) {
               themeState={themeState}
               handleThemeChange={handleThemeChange}
             />
-            <Typography style={{"fontFamily": 'Orbitron,sans-serif ',padding:"1em"  }} route="/" ><a style={{"textDecoration": "none","fontSize": "2.1vh",    fontVariant: "petite-caps"}} href="/">Make your wish in 3D</a></Typography>
+            <Typography style={{"fontFamily": 'Orbitron,sans-serif ',padding:"1em"  }}  ><p style={{"textDecoration": "none","fontSize": "2.1vh",    fontVariant: "petite-caps"}} >Make your wish in 3D</p></Typography>
 
             <LinkButton  name="Inicio" route="/"  style={{paddingLeft:"10px"}} />
             <LinkButton name="Productos" route="/productos" />
