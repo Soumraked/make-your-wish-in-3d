@@ -154,7 +154,7 @@ function Modify({ token }) {
               style={{
                 margin: 20,
               }}
-              variant="outlined"
+              variant="outlined" color="secondary"
               onClick={() => {
                 setModify(false);
               }}
@@ -173,7 +173,7 @@ function Modify({ token }) {
               style={{
                 margin: 20,
               }}
-              variant="outlined"
+              variant="outlined" color="secondary"
               onClick={() => {
                 setCharge(true);
                 modifyProduct();

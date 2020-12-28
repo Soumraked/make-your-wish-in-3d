@@ -7,6 +7,7 @@ import Info from "./Tabs/info";
 import Admin from "./Tabs/admin";
 import Modify from "./Tabs/modify";
 import Password from "./Tabs/password";
+import Delete from "./Tabs/delete";
 
 function Main({ token }) {
   const [value, setValue] = React.useState(0);
@@ -29,12 +30,13 @@ function Main({ token }) {
           <Tab label="Dashboard" />
           <Tab label="Agregar producto" />
           <Tab label="Modificar producto" />
+          <Tab label="Eliminar producto" />
           <Tab label="Información pública" />
           <Tab label="Cambio de contraseña" />
         </Tabs>
 
       </Paper>
-      {value === 0 ? <Dashboard /> : value === 1 ? <Admin token={token} /> : value === 2 ? <Modify token={token} /> : value === 3 ? < Info token={token} /> : <Password token={token} />}
+      {value === 0 ? <Dashboard /> : value === 1 ? <Admin token={token} /> : value === 2 ? <Modify token={token} /> : value === 3 ? <Delete token={token} /> : value === 4 ? < Info token={token} /> : <Password token={token} />}
     </>
   )
 }

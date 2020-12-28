@@ -29,6 +29,8 @@ function Admin() {
         <Grid container direction="row" justify="center" alignItems="center">
           <Login handleAccess={handleAccess} handleToken={handleToken} />
           <br></br>      <br></br>      <br></br>      <br></br>
+          <Typography style={{ textAlignLast: "center" }}>Si no recuerda su contraseña, comuníquese con los programadores para habilitar un cambio.</Typography>
+          <br /><br /><br />
           <Typography style={{ color: "red", textAlignLast: "center" }}>Su sesión se cerrará automaticamente al ingresar a otro apartado, salir o recargar la página. </Typography>
         </Grid>
       ) : (

@@ -166,7 +166,7 @@ function Upload({ token }) {
           style={{
             margin: 20,
           }}
-          variant="outlined"
+          variant="outlined" color="secondary"
           onClick={() => {
             cleanData();
           }}
@@ -184,7 +184,7 @@ function Upload({ token }) {
           style={{
             margin: 20,
           }}
-          variant="outlined"
+          variant="outlined" color="secondary"
           onClick={() => {
             setCharge(true);
             addProduct();
