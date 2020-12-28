@@ -154,7 +154,7 @@ function Formulario(props) {
     return <Container maxWidth="md" className="classes.datosempresa" style={{ justifyContent: "center" }} >
    
 
-        <Grid container direction="row" className="classes.datosempresa"  >
+        <Grid container direction="row" className="classes.datosempresa"  style={{justifyContent: "center"}} >
             {/* {Datos de empresa} */}
             <Grid item xs={12} md={6} className={"classes.datosempresa"} >
                 <br></br>

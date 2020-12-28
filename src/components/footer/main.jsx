@@ -13,10 +13,10 @@ function Contacto(props) {
   return (
     <footer className="main-footer" >
     <Divider></Divider>
-    <div className="container">
-      <Card>
+    <div className="container" >
+      <Card >
         <CardContent  style={{padding:"0 0 1em 0" }}>
-          <Container maxWidth="lg" disableGutters>
+          <Container maxWidth="lg" disableGutters >
             <Formulario/>
           </Container>
         </CardContent>
