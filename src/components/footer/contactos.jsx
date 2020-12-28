@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, FormHelperText, makeStyles, Button, Grid, TextField, Typography } from '@material-ui/core';
 import CircularProgress from "@material-ui/core/CircularProgress";
-import axios from "axios" ;
+import axios from "axios";
 
 import { SiFacebook, SiInstagram, SiWhatsapp } from "react-icons/si";
 
@@ -47,31 +47,31 @@ function Formulario(props) {
     const [asunto, setAsunto] = React.useState("");
     const [comentario, setComentario] = React.useState("");
     const [info, setInfo] = React.useState({
-       fb: "https://facebook.com",
-       ig: "https://intagram.com",
-       wsp: "https://api.whatsapp.com/send?phone=",
-       direction: "Springfield"
+        fb: "https://facebook.com",
+        ig: "https://intagram.com",
+        wsp: "https://api.whatsapp.com/send?phone=",
+        direction: "Springfield"
     });
 
     React.useEffect(() => {
         const obtenerInfo = () => {
-          axios.get("https://us-central1-u-app-3100e.cloudfunctions.net/api/information/get")
-          .then((data) => {
-              setInfo({
-                fb: data.data.facebook,
-                ig: data.data.instagram,
-                wsp: `https://api.whatsapp.com/send?phone=56${data.data.whatsapp}`,
-                direction: data.data.direction
-              });
-          })
-          .catch((error) => {
-            alert("Ha ocurrido un error al cargar la información pública.");
-            console.log(error);
-            } //Mostrar un alert o algo
-          );
+            axios.get("https://us-central1-u-app-3100e.cloudfunctions.net/api/information/get")
+                .then((data) => {
+                    setInfo({
+                        fb: data.data.facebook,
+                        ig: data.data.instagram,
+                        wsp: `https://api.whatsapp.com/send?phone=56${data.data.whatsapp}`,
+                        direction: data.data.direction
+                    });
+                })
+                .catch((error) => {
+                    alert("Ha ocurrido un error al cargar la información pública.");
+                    console.log(error);
+                } //Mostrar un alert o algo
+                );
         };
         obtenerInfo();
-      }, []);
+    }, []);
 
     const [message, setMessage] = React.useState("");
     const [messageStatus, setMessageStatus] = React.useState(0); // 0 -> hidden, -> 1 -> Success, 2 -> Error
@@ -83,12 +83,12 @@ function Formulario(props) {
         setComentario("");
     };
 
-    const enviarmail= () =>{
-        if(email === "" || asunto === "" || comentario === ""){
+    const enviarmail = () => {
+        if (email === "" || asunto === "" || comentario === "") {
             setMessageStatus(2);
             setMessage("Los campos anteriores no pueden estar vacios.");
-            setCharge(false);  
-        }else{
+            setCharge(false);
+        } else {
             setMessage("");
             setMessageStatus(0);
             var data = {
@@ -98,35 +98,35 @@ function Formulario(props) {
                 template_params: {
                     'email': email,
                     'asunto': asunto,
-                    'comentario':comentario,
-                    'reply-to':email,
+                    'comentario': comentario,
+                    'reply-to': email,
                 }
             };
-            axios.post('https://api.emailjs.com/api/v1.0/email/send',data,{Headers:{"content-Type":"application/json"}})
-            .then(res=> {
-                setCharge(false); 
-                setMessageStatus(1);
-                setMessage("Correo enviado exitosamente.");
-                cleanData();
-                setTimeout(() => {
-                    setMessageStatus(0);
-                    setMessage("");
-                  }, 3000);
-                 
-            })
-            .catch(error=> {
-                setMessageStatus(2);
-                setMessage("Ha ocurrido un error, intenta nuevamente más tarde.");
-                console.log(error);
-                setCharge(false);  
-            });
+            axios.post('https://api.emailjs.com/api/v1.0/email/send', data, { Headers: { "content-Type": "application/json" } })
+                .then(res => {
+                    setCharge(false);
+                    setMessageStatus(1);
+                    setMessage("Correo enviado exitosamente.");
+                    cleanData();
+                    setTimeout(() => {
+                        setMessageStatus(0);
+                        setMessage("");
+                    }, 3000);
+
+                })
+                .catch(error => {
+                    setMessageStatus(2);
+                    setMessage("Ha ocurrido un error, intenta nuevamente más tarde.");
+                    console.log(error);
+                    setCharge(false);
+                });
         }
-            
+
     }
 
 
-    
-    return <Container maxWidth="md" className="classes.datosempresa" style={{    justifyContent: "center"}} >
+
+    return <Container maxWidth="md" className="classes.datosempresa" style={{ justifyContent: "center" }} >
 
         <Grid container direction="row" className="classes.datosempresa"  >
             {/* {Datos de empresa} */}
@@ -146,21 +146,21 @@ function Formulario(props) {
                     </Grid>
                     <Grid item md={3} sm={3} style={{ textAlign: 'center', }} >
 
-                        <a href={info.fb}><SiFacebook size={'2em'} style={{color:"#4267B2"}} /> </a>
+                        <a href={info.fb}><SiFacebook size={'2em'} style={{ color: "#4267B2" }} /> </a>
 
                         <Typography style={{ textAlign: "center" }}
                             variant={props.width === "xs" ? "caption" : "subtitle1"}
                             component="div"> Facebook</Typography>
                     </Grid>
                     <Grid item xs={3} sm={4} style={{ textAlign: 'center', }}>
-                        <a href={info.ig} > <SiInstagram size={'2em'} style={{color:"#f28168"}} /></a>
+                        <a href={info.ig} > <SiInstagram size={'2em'} style={{ color: "#f28168" }} /></a>
 
                         <Typography style={{ textAlign: "center" }}
                             variant={props.width === "xs" ? "caption" : "subtitle1"}
                             component="div"> Instagram</Typography>
                     </Grid>
                     <Grid item xs={3} sm={3} style={{ textAlign: 'center', }}>
-                        <a href={info.wsp} > <SiWhatsapp size={'2em'} style={{color:"#25D366"}} /></a>
+                        <a href={info.wsp} > <SiWhatsapp size={'2em'} style={{ color: "#25D366" }} /></a>
 
 
                         <Typography
@@ -181,7 +181,7 @@ function Formulario(props) {
                     component="div"
                 >
                     {info.direction}
-        </Typography>
+                </Typography>
 
                 <Typography
                     style={{ textAlign: "center" }}
@@ -194,11 +194,11 @@ function Formulario(props) {
 
 
             {/* {Formulario} */}
-            
-            <Grid item xs={12} sm={6} style={{alignContent:"center"}}  >
+
+            <Grid item xs={12} sm={6} style={{ alignContent: "center" }}  >
                 {/* {Nombre} */}
                 <TextField
-                    className={classes.separacion} 
+                    className={classes.separacion}
                     color="secondary"
                     value={email}
                     onChange={(event) => {
@@ -210,7 +210,7 @@ function Formulario(props) {
 
                 {/* {Email} */}
                 <TextField
-                    className={classes.separacion} 
+                    className={classes.separacion}
                     color="secondary"
                     id="asunto"
                     value={asunto}
@@ -233,29 +233,29 @@ function Formulario(props) {
                     value={comentario}
                     onChange={(event) => {
                         setComentario(event.target.value);
-                    }} 
+                    }}
                 />
                 <Grid container direction="row" justify="center" alignItems="center">
                     {messageStatus !== 0 && <FormHelperText id="error" error={messageStatus === 2}>{message}</FormHelperText>}
                 </Grid>
                 <Grid container direction="row" justify="center" alignItems="center">
                     <Button className={classes.boton}
-                     variant="outlined" color="primary"  
+                        variant="outlined" color="secondary"
                         onClick={() => {
                             setCharge(true);
                             enviarmail();
                         }}>
-                            {charge ? (
-                        <CircularProgress
-                         
-                        style={{ width: "50%", height: "50%" }}
-                        />
-                    ) : (
-                        "Enviar"
-                    )}
-                </Button>
-               </Grid>
-                
+                        {charge ? (
+                            <CircularProgress
+
+                                style={{ width: "50%", height: "50%" }}
+                            />
+                        ) : (
+                                "Enviar"
+                            )}
+                    </Button>
+                </Grid>
+
 
 
             </Grid>

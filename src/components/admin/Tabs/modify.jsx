@@ -76,7 +76,7 @@ function Modify({ token }) {
       setError(true);
       setCharge(false);
     } else {
-      const id = (nameProduct.trim().substr(0, 1) + modelProduct.split(' ').join('')).toUpperCase();
+      const id = (nameProduct.trim().substr(0, 1) + modelProduct.split(' ').join('')).toUpperCase().replace(/[^a-z0-9]/gi, '');
       if (imageProduct.substr(0, 68) === "https://firebasestorage.googleapis.com/v0/b/u-app-3100e.appspot.com/") {
         sendInfo(imageProduct, id);
       } else {
