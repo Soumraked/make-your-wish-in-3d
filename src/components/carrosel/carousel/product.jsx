@@ -11,9 +11,10 @@ import NumberFormat from "react-number-format";
 
 const UseStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 290,
-    minWidth: 150,
+    maxWidth: 250,
+    minWidth: 250,
     textDecoration: "none",
+    margin:10
     // [theme.breakpoints.down("sm")]: {
     //   display: "none",
     // },
@@ -53,11 +54,11 @@ function productCard(props) {
   return (
     <Card
       className={classes.root}
-      style={{ borderRadius: "10%" }}
+      style={{ borderRadius: "5%" }}
     >
 
       <div style={{ position: 'relative' }} >
-        <CardMedia className={classes.media} image={props.img} title={title} style={{ borderRadius: "4%" }} />
+        <CardMedia className={classes.media} image={props.img} title={title} style={{ borderRadius: "1%" }} />
 
         {/* Texto en color rojo */}
 

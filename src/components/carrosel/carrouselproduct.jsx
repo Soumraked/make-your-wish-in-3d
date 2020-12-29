@@ -2,14 +2,15 @@ import React from "react";
 import 'react-awesome-slider/dist/styles.css';
 import axios from "axios";
 import Carousel from 'react-elastic-carousel';
-import "./carr.css";
 import CardProduct from "./carousel/product";
+
 
 
 const url = "https://us-central1-u-app-3100e.cloudfunctions.net/api/dashboard/products/8";
 
 
 export default function CarouselProducts() {
+
   const [products, setProducts] = React.useState([]);
   React.useEffect(() => {
     const obtenerProductos = () => {
@@ -43,10 +44,11 @@ export default function CarouselProducts() {
 
 
   return (<>
-    <div style={{ marginTop: "6em" }}>
+    <div style={{ marginTop: "6em",height:"20em" }}>
       <Carousel showArrows={false} enableAutoPlay={true} autoPlaySpeed={7000} breakPoints={breakPoints}>
         {products.map((item) => (
-          <CardProduct
+
+          <CardProduct     
             key={item.id}
             name={item.name}
             id={item.id}
@@ -55,6 +57,7 @@ export default function CarouselProducts() {
             img={item.img.length > 10 ? item.img : "https://firebasestorage.googleapis.com/v0/b/u-app-3100e.appspot.com/o/error%2Ferror.jpeg?alt=media"}
 
           />
+
         ))
         }
       </Carousel>
