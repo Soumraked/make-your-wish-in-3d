@@ -36,7 +36,7 @@ function Main({ token }) {
         </Tabs>
 
       </Paper>
-      {value === 0 ? <Dashboard /> : value === 1 ? <Admin token={token} /> : value === 2 ? <Modify token={token} /> : value === 3 ? <Delete token={token} /> : value === 4 ? < Info token={token} /> : <Password token={token} />}
+      {value === 0 ? <Dashboard token={token} /> : value === 1 ? <Admin token={token} /> : value === 2 ? <Modify token={token} /> : value === 3 ? <Delete token={token} /> : value === 4 ? < Info token={token} /> : <Password token={token} />}
     </>
   )
 }
