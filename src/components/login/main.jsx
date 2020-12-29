@@ -47,6 +47,7 @@ export default function Main({ handleAccess, handleToken }) {
     showPassword: false,
   });
 
+  const [messageError, setMessageError] = React.useState("");
   const [messageName, setMessageName] = React.useState("");
   const [messagePass, setMessagePass] = React.useState("");
   const [charge, setCharge] = React.useState(false);
@@ -72,10 +73,13 @@ export default function Main({ handleAccess, handleToken }) {
   var controller = new AbortController();
 
   const handleLogin = () => {
+    setMessageError("");
     if (!validateEmail(nick)) {
       setMessageName("Formato no valido para el email.");
+      setMessageError("Error");
       setCharge(false);
     } else {
+      setMessageError("Success");
       axios
         .post(
           `https://us-central1-u-app-3100e.cloudfunctions.net/api/admin/login`,
@@ -153,12 +157,15 @@ export default function Main({ handleAccess, handleToken }) {
           <Grid container direction="row" justify="center" alignItems="center">
             <Grid item xs={12}>
               <FormControl
+                data-testid="form"
                 className={clsx(classes.margin, classes.textField)}
                 style={{
                   width: "95%",
                 }}
               >
                 <TextField
+
+                  data-testid="email"
                   type="email"
                   id="standard-required"
                   label="Email"
@@ -186,6 +193,7 @@ export default function Main({ handleAccess, handleToken }) {
                   Contraseña
                     </InputLabel>
                 <Input
+                  data-testid="pass"
                   error={messagePass !== ""}
                   color="secondary"
                   id="pass-error"
@@ -214,6 +222,7 @@ export default function Main({ handleAccess, handleToken }) {
           </Grid>
           <Grid container direction="row" justify="center" alignItems="center">
             <Button
+              data-testid="btn"
               variant="outlined" color="secondary"
               onClick={() => {
                 setCharge(true);
@@ -232,7 +241,7 @@ export default function Main({ handleAccess, handleToken }) {
           </Grid>
         </CardContent>
       </Card>
-
+      <h1 data-testid="res" style={{ display: "none" }}>{messageError}</h1>
     </>
   )
 }

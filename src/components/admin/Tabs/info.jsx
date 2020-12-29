@@ -241,6 +241,7 @@ export default function Information({ token }) {
                   }}
                 >
                   <TextField
+                    data-testid="wsp"
                     type="number"
                     label="Whatsapp"
                     placeholder="Sólo 9 números"
@@ -279,6 +280,7 @@ export default function Information({ token }) {
             </Grid>
             <Grid container direction="row" justify="center" alignItems="center">
               <Button
+                data-testid="btn"
                 variant="outlined" color="secondary"
                 onClick={() => {
                   setCharge(true);
