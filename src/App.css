@@ -66,3 +66,24 @@ a:active{
   color:grey;
 }
 
+button.rec-dot{
+  background-color: rgb(111, 111, 107);
+  /* box-shadow: 0 0 1px 3px rgba(235, 16, 16, 0.5); */
+}
+
+button.rec-dot:hover, button.rec-dot:active, button.rec-dot:focus  {
+  box-shadow: 0 0 1px 3px rgb(0, 0, 0);
+}
+
+button.rec-arrow{
+  background-color: rgb(87, 87, 87);
+}
+
+button.rec-arrow:hover, button.rec-arrow:active, button.rec-arrow:focus,button.rec-arrow:hover,button.rec-arrow:link  {
+  background-color:  rgb(255, 255, 0);
+  box-shadow: 0 0 1px 3px rgb(0, 0, 0);
+}
+
+button.rec-dot{
+  visibility: hidden;
+}
