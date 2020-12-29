@@ -73,20 +73,24 @@ export default function Information({ token }) {
   const [messageIg, setMessageIg] = React.useState("");
   const [messageWsp, setMessageWsp] = React.useState("");
   const [messageDirection, setMessageDirection] = React.useState("");
+  const [messageError, setMessageError] = React.useState("");
 
   const handleChangeInformation = () => {
-    if (wsp.toString().length !== 9 || !validateEmail(mail)) {
-      setMessageMail("");
-      setMessageWsp("");
-      if (wsp.toString().length !== 9) {
-        setMessageWsp(
-          "Formato incorrecto, debe ingresar 9 numeros."
-        );
-      } if (!validateEmail(mail)) {
-        setMessageMail("Formato no valido para el email.");
-      }
+    setMessageError("");
+    setMessageMail("");
+    setMessageWsp("");
+    if (!validateEmail(mail)) {
+      setMessageMail("Formato no valido para el email.");
+      setCharge(false);
+    }
+    if (wsp.toString().length !== 9 || !validateWsp(wsp)) {
+      setMessageWsp(
+        "Formato incorrecto, debe ingresar solo 9 numeros."
+      );
+      setMessageError("Error");
       setCharge(false);
     } else {
+      setMessageError("Success");
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       axios
         .put(
@@ -160,6 +164,17 @@ export default function Information({ token }) {
   const validateEmail = (email) => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+  }
+  const validateWsp = (email) => {
+    const number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    var listWsp = email.toString().split('');
+    for (let i = 0; i < listWsp.length; i++) {
+      if (!number.includes(listWsp[i])) {
+        return false;
+      }
+
+    }
+    return true;
   }
 
   return (
@@ -303,6 +318,7 @@ export default function Information({ token }) {
       <Grid container direction="row" justify="center" alignItems="center" style={{ paddingTop: 20 }}>
         {success && <FormHelperText id="success">{message}</FormHelperText>}
       </Grid>
+      <h1 data-testid="res" style={{ display: "none" }}>{messageError}</h1>
     </>
 
   )
