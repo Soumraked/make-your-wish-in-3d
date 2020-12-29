@@ -13,6 +13,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import axios from "axios";
 
+import Swal from 'sweetalert2'
+
 
 function Delete({ token }) {
   const [confirmation, setConfirmation] = React.useState(false);
@@ -45,12 +47,20 @@ function Delete({ token }) {
       }
     )
       .then((res) => {
-        alert("Producto eliminado con exito.");
+        Swal.fire(
+          'Eliminado!',
+          'Producto eliminado con exito.',
+          'success'
+        )
         handleDelete(false);
         setCharge(false);
       })
       .catch((error) => {
-        alert("Ha ocurrido un error al intentar eliminar el producto.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ha ocurrido un error al intentar eliminar el producto.!'
+        })
         handleDelete(false);
         setCharge(false);
       });
