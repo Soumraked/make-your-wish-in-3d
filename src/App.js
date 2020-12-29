@@ -19,6 +19,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 
 
+// ReactGa.initialize('UA-186179953-1');
 
 
 
@@ -54,20 +55,21 @@ function App() {
   }, [prefersDarkMode, setThemeState]);
   
 
- 
+  // React.useEffect(()=>{
+  //   ReactGa.pageview(window.location.pathname + window.location.search);
+  //   },[]);
 
 
-  
+
   return (
     <div className="page-container">
       <div className="content-wrap" >
     <ThemeProvider theme={theme}>
         <CssBaseline />
-        
       <Router >
-  
 
-  
+        {/* <Analytics id='UA-186179953-1' debug> */}
+
           <Navbar
             themeState={themeState}
             handleThemeChange={handleThemeChange}
@@ -82,10 +84,11 @@ function App() {
               <Route component={Error}></Route>
             </Switch>
           </Container>
-      
-        </Router>
-        
-        </ThemeProvider>
+    
+        {/* </Analytics>   */}
+      </Router>
+    </ThemeProvider>
+
         </div>
         <ThemeProvider theme={theme}>
         <Footer />

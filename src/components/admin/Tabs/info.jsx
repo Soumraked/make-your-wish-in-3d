@@ -59,8 +59,10 @@ export default function Information({ token }) {
     setIg(event.target.value);
   };
   const handleWsp = (event) => {
-    if (event.target.value.length <= 9) {
-      setWsp(event.target.value);
+    if (event.target.value !== "") {
+      if (event.target.value.length <= 9) {
+        setWsp(event.target.value);
+      }
     }
   };
   const handleDirection = (event) => {
@@ -72,56 +74,69 @@ export default function Information({ token }) {
   const [messageWsp, setMessageWsp] = React.useState("");
   const [messageDirection, setMessageDirection] = React.useState("");
 
-  const handleChangePass = () => {
+  const handleChangeInformation = () => {
+    if (wsp.toString().length !== 9 || !validateEmail(mail)) {
+      setMessageMail("");
+      setMessageWsp("");
+      if (wsp.toString().length !== 9) {
+        setMessageWsp(
+          "Formato incorrecto, debe ingresar 9 numeros."
+        );
+      } if (!validateEmail(mail)) {
+        setMessageMail("Formato no valido para el email.");
+      }
+      setCharge(false);
+    } else {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      axios
+        .put(
+          `https://us-central1-u-app-3100e.cloudfunctions.net/api/information/modify`,
+          {
+            mail: mail,
+            facebook: fb,
+            instagram: ig,
+            whatsapp: wsp,
+            direction: direction,
+          }
+        )
+        .then((data) => {
+          setMessageMail("");
+          setMessageFb("");
+          setMessageIg("");
+          setMessageWsp("");
+          setMessageDirection("");
+          if (data.status === 200) {
+            setSuccess(true);
+            setMessage("Información modificada con exito.");
+            setTimeout(() => {
+              setSuccess(false);
+            }, 3000)
+          } else {
+            setMessageMail(
+              "Error desconocido, verifique los datos antes de continuar."
+            );
+            setMessageFb(
+              "Error desconocido, verifique los datos antes de continuar."
+            );
+            setMessageIg(
+              "Error desconocido, verifique los datos antes de continuar."
+            );
+            setMessageWsp(
+              "Error desconocido, verifique los datos antes de continuar."
+            );
+            setMessageDirection(
+              "Error desconocido, verifique los datos antes de continuar."
+            );
+          }
+          setCharge(false);
+        })
+        .catch((error) => {
+          alert("Ha ocurrido un error inesperado, intenta nuevamente más tarde");
+          console.log(error.request.status);
+          setCharge(false);
+        });
 
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    axios
-      .put(
-        `https://us-central1-u-app-3100e.cloudfunctions.net/api/information/modify`,
-        {
-          mail: mail,
-          facebook: fb,
-          instagram: ig,
-          whatsapp: wsp,
-          direction: direction,
-        }
-      )
-      .then((data) => {
-        setMessageMail("");
-        setMessageFb("");
-        setMessageIg("");
-        setMessageWsp("");
-        setMessageDirection("");
-        if (data.status === 200) {
-          setSuccess(true);
-          setMessage("Información modificada con exito.");
-          setTimeout(() => {
-            setSuccess(false);
-          }, 3000)
-        } else {
-          setMessageMail(
-            "Error desconocido, verifique los datos antes de continuar."
-          );
-          setMessageFb(
-            "Error desconocido, verifique los datos antes de continuar."
-          );
-          setMessageIg(
-            "Error desconocido, verifique los datos antes de continuar."
-          );
-          setMessageWsp(
-            "Error desconocido, verifique los datos antes de continuar."
-          );
-          setMessageDirection(
-            "Error desconocido, verifique los datos antes de continuar."
-          );
-        }
-        setCharge(false);
-      })
-      .catch((error) => {
-        alert("Ha ocurrido un error inesperado, intenta nuevamente más tarde");
-        console.log(error.request.status);
-        setCharge(false);
-      });
+    }
   };
 
   React.useEffect(() => {
@@ -141,6 +156,11 @@ export default function Information({ token }) {
     };
     obtenerInfo();
   }, []);
+
+  const validateEmail = (email) => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
 
   return (
     <>
@@ -221,6 +241,7 @@ export default function Information({ token }) {
                   }}
                 >
                   <TextField
+                    data-testid="wsp"
                     type="number"
                     label="Whatsapp"
                     placeholder="Sólo 9 números"
@@ -259,10 +280,11 @@ export default function Information({ token }) {
             </Grid>
             <Grid container direction="row" justify="center" alignItems="center">
               <Button
+                data-testid="btn"
                 variant="outlined" color="secondary"
                 onClick={() => {
                   setCharge(true);
-                  handleChangePass();
+                  handleChangeInformation();
                 }}
               >
                 {charge ? (
