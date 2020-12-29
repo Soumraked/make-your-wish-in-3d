@@ -17,14 +17,13 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import Container from "@material-ui/core/Container";
-import ReactGa from 'react-ga';
-import Analytics from 'react-router-ga';
 
 
-ReactGa.initialize('UA-186179953-1');
+
 
 
 function App() {
+
   //Dark theme
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [themeState, setThemeState] = useState(false);
@@ -32,8 +31,7 @@ function App() {
   const theme = createMuiTheme({
     palette: {
       type: palletType,
-    },
-    
+    },  
   });
   const handleThemeChange = () => {
     setThemeState(!themeState);
@@ -56,11 +54,6 @@ function App() {
   }, [prefersDarkMode, setThemeState]);
   
 
-  React.useEffect(()=>{
-  
-    ReactGa.pageview(window.location.pathname + window.location.search);
-    },[]);
-
  
 
 
@@ -72,12 +65,13 @@ function App() {
         <CssBaseline />
         
       <Router >
-      <Analytics id='UA-186179953-1' debug>
+  
 
   
           <Navbar
             themeState={themeState}
             handleThemeChange={handleThemeChange}
+          
           />
           <Container maxWidth="lg">
             <Switch>
@@ -88,7 +82,7 @@ function App() {
               <Route component={Error}></Route>
             </Switch>
           </Container>
-          </Analytics>  
+      
         </Router>
         
         </ThemeProvider>

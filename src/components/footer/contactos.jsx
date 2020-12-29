@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
     },
     TextField: {
-        paddingTop: 10,
+        paddingTop: 0,
+        marginTop:15,
         paddingBottom: 10,
         width: "100%",
 
@@ -265,7 +266,7 @@ function Formulario(props) {
                 <Grid container direction="row" justify="center" alignItems="center">
                     <Button className={classes.boton}
                         variant="outlined" color="secondary"
-                        style={{marginRight:"1em"}}
+                        style={{marginRight:"1em",marginBottom:"1em"}}
                         onClick={() => {
                             // setCharge(true);
                             enviarmail();
