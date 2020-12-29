@@ -19,8 +19,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 
 
-
 function App() {
+
   //Dark theme
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [themeState, setThemeState] = useState(false);
@@ -28,8 +28,7 @@ function App() {
   const theme = createMuiTheme({
     palette: {
       type: palletType,
-    },
-    
+    },  
   });
   const handleThemeChange = () => {
     setThemeState(!themeState);
@@ -52,16 +51,18 @@ function App() {
   }, [prefersDarkMode, setThemeState]);
 
 
-  
+
   return (
     <div className="page-container">
       <div className="content-wrap" >
     <ThemeProvider theme={theme}>
         <CssBaseline />
       <Router >
+
           <Navbar
             themeState={themeState}
             handleThemeChange={handleThemeChange}
+          
           />
           <Container maxWidth="lg">
             <Switch>
@@ -74,6 +75,7 @@ function App() {
           </Container>
       </Router>
     </ThemeProvider>
+
         </div>
         <ThemeProvider theme={theme}>
         <Footer />
