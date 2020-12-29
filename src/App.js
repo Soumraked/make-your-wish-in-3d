@@ -21,7 +21,7 @@ import ReactGa from 'react-ga';
 import Analytics from 'react-router-ga';
 
 
-ReactGa.initialize('UA-186179953-1');
+// ReactGa.initialize('UA-186179953-1');
 
 
 function App() {
@@ -56,10 +56,10 @@ function App() {
   }, [prefersDarkMode, setThemeState]);
   
 
-  React.useEffect(()=>{
+  // React.useEffect(()=>{
   
-    ReactGa.pageview(window.location.pathname + window.location.search);
-    },[]);
+  //   ReactGa.pageview(window.location.pathname + window.location.search);
+  //   },[]);
 
  
 
@@ -70,11 +70,8 @@ function App() {
       <div className="content-wrap" >
     <ThemeProvider theme={theme}>
         <CssBaseline />
-        
       <Router >
-      <Analytics id='UA-186179953-1' debug>
-
-  
+        {/* <Analytics id='UA-186179953-1' debug> */}
           <Navbar
             themeState={themeState}
             handleThemeChange={handleThemeChange}
@@ -88,10 +85,9 @@ function App() {
               <Route component={Error}></Route>
             </Switch>
           </Container>
-          </Analytics>  
-        </Router>
-        
-        </ThemeProvider>
+        {/* </Analytics>   */}
+      </Router>
+    </ThemeProvider>
         </div>
         <ThemeProvider theme={theme}>
         <Footer />
